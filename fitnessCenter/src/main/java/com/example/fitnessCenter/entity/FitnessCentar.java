@@ -2,6 +2,9 @@ package com.example.fitnessCenter.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class FitnessCentar implements Serializable {
@@ -16,6 +19,12 @@ public class FitnessCentar implements Serializable {
     private String brojTelefonaCentrale;
     @Column
     private String emailCentra;
+
+    @OneToMany
+    private List<Trener> treneri = new ArrayList<>();
+
+    @OneToMany
+    private List<Sala> sale = new ArrayList<>();
 
     public FitnessCentar() {
     }

@@ -22,7 +22,7 @@ public class Korisnik implements Serializable {
     @Column
     private String email;
     @Column
-    private String rodjenje;
+    private Date rodjenje;
     @Column(nullable = false)
     private Uloga uloga;
     @Column(nullable = false)
@@ -31,7 +31,7 @@ public class Korisnik implements Serializable {
     public Korisnik() {
     }
 
-    public Korisnik(Long id, String korisnickoIme, String lozinka, String ime, String prezime, String kontaktTelefon, String email, String datumRodjenja, Uloga uloga, Boolean aktivan) {
+    public Korisnik(Long id, String korisnickoIme, String lozinka, String ime, String prezime, String kontaktTelefon, String email, Date datumRodjenja, Uloga uloga, Boolean aktivan) {
         this.id = id;
         this.korisnicko = korisnickoIme;
         this.lozinka = lozinka;
@@ -100,11 +100,11 @@ public class Korisnik implements Serializable {
         this.email = email;
     }
 
-    public String getRodjenje() {
+    public Date getRodjenje() {
         return rodjenje;
     }
 
-    public void setRodjenje(String rodjenje) {
+    public void setRodjenje(Date rodjenje) {
         this.rodjenje = rodjenje;
     }
 

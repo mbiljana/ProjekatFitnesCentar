@@ -19,9 +19,11 @@ public class Trening implements Serializable {
     @Column(nullable = false)
     private String trajanje;
 
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @OneToMany
     private Set<ListaTreninga> treninzi = new HashSet<>();
 
     public Trening() {
     }
+
+
 }

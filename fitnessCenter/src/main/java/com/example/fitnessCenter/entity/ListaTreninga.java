@@ -11,12 +11,11 @@ public class ListaTreninga implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY) //inkrementalno generisanje kljuceva prilikom cuvanja u bazi
     private Long id;
-    @Column
-    private Date datumTreninga;
-    @Column
-    private double cenaTreninga;
+
     @Column
     private int brojPrijavljenih;
+
+
 
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Trening trening;
@@ -24,7 +23,7 @@ public class ListaTreninga implements Serializable {
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Set<Clan> clanoviTreninga = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @ManyToMany
     private Set<Sala> saleTreninga = new HashSet<>();
 
 
