@@ -11,15 +11,19 @@ public class Sala implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY) //inkrementalno generisanje kljuceva prilikom cuvanja u bazi
     private Long id;
     @Column(nullable = false)
-    private String oznakaSale;
+    private String oznaka;
     @Column(nullable = false)
-    private int kapacitetSale;
+    private int kapacitet;
 
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private Set<ListaTreninga> terminskaListaTreninga = new HashSet<>();
+    @ManyToMany
+    @JoinTable(name = "termini",
+                joinColumns = @JoinColumn(name = "sala_id",referencedColumnName = "id"),
+                inverseJoinColumns = @JoinColumn(name = "termin_id",referencedColumnName = "id")
+    )
+    private Set<ListaTreninga>listaTreninga = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private Set<ListaTreninga> treninzi = new HashSet<>();
+    @ManyToOne(fetch = FetchType.EAGER)
+    private FitnessCentar fitnessCentar;
 
     public Sala() {
     }

@@ -10,8 +10,11 @@ public class Trener extends Korisnik {
     @Column
     private double prosecnaOcena;
 
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private Set<ListaTreninga> treninziKojeDrzi = new HashSet<>();
+    @OneToMany(mappedBy = "trener",fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
+    private Set<Trening> treninziKojeDrzi = new HashSet<>();
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private FitnessCentar fitnessCentar;
 
     public Trener() {
     }

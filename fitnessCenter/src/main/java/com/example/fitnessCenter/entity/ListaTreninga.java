@@ -15,16 +15,14 @@ public class ListaTreninga implements Serializable {
     @Column
     private int brojPrijavljenih;
 
+    @ManyToMany(mappedBy = "listaTreninga")
+    private Set<Sala> sale = new HashSet<>();
+
+    @ManyToMany(mappedBy = "listaTreninga")
+    private Set<RasporedTreninga> rasporediTreninga = new HashSet<>();
 
 
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private Trening trening;
 
-    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private Set<Clan> clanoviTreninga = new HashSet<>();
-
-    @ManyToMany
-    private Set<Sala> saleTreninga = new HashSet<>();
 
 
 

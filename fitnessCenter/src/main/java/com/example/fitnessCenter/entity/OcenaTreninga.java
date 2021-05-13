@@ -3,6 +3,10 @@ package com.example.fitnessCenter.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class OcenaTreninga implements Serializable {
@@ -11,7 +15,13 @@ public class OcenaTreninga implements Serializable {
     private Long id;
     @Column
     private double ocena;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Trening trening;
+
+    @ManyToMany(mappedBy = "ocene")
+    private Set<Clan> clanovi = new HashSet<>();
 
     public OcenaTreninga() {
     }
+
 }

@@ -11,16 +11,28 @@ public class Trening implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY) //inkrementalno generisanje kljuceva prilikom cuvanja u bazi
     private Long id;
     @Column(nullable = false)
-    private String nazivTreninga;
+    private String naziv;
     @Column
-    private String opisTreninga;
-    @Column
+    private String opis;
+    @Column(nullable = false)
     private TipTreninga tipTreninga;
     @Column(nullable = false)
     private String trajanje;
 
-    @OneToMany
-    private Set<ListaTreninga> treninzi = new HashSet<>();
+    @OneToMany(mappedBy = "trening", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private Set<OcenaTreninga> oceneTreninga = new HashSet<>();
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Trener trener;
+
+    @ManyToMany(mappedBy = "odradjeniTreninzi")
+    private Set<Clan> odradiliTrening = new HashSet<>();
+
+    @ManyToMany(mappedBy = "prijavljeniTreninzi")
+    private Set<Clan> prijavljeniClanovi = new HashSet<>();
+
+    @ManyToMany(mappedBy = "trening")
+    private Set<RasporedTreninga> rasporediTreninga = new HashSet<>();
 
     public Trening() {
     }

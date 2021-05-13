@@ -3,6 +3,7 @@ package com.example.fitnessCenter.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -20,11 +21,14 @@ public class FitnessCentar implements Serializable {
     @Column
     private String emailCentra;
 
-    @OneToMany
-    private List<Trener> treneri = new ArrayList<>();
+    @OneToMany(mappedBy = "fitnessCentar",fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
+    private Set<Trener> treneri = new HashSet<>();
 
-    @OneToMany
-    private List<Sala> sale = new ArrayList<>();
+    @OneToMany(mappedBy = "fitnessCentar",fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
+    private Set<Sala> sale = new HashSet<>();
+
+    @OneToMany(mappedBy = "fitnessCentar",fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
+    private Set<RasporedTreninga> rasporediTreninga = new HashSet<>();
 
     public FitnessCentar() {
     }
