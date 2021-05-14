@@ -10,7 +10,7 @@ public class Trener extends Korisnik {
     @Column
     private double prosecnaOcena;
 
-    @OneToMany(mappedBy = "trener",fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
+    @ManyToMany(mappedBy = "treneri",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Set<Trening> treninziKojeDrzi = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.EAGER)

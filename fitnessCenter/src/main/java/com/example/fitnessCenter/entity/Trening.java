@@ -22,8 +22,8 @@ public class Trening implements Serializable {
     @OneToMany(mappedBy = "trening", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Set<OcenaTreninga> oceneTreninga = new HashSet<>();
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Trener trener;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Trener> treneri = new HashSet<>();
 
     @ManyToMany(mappedBy = "treninzi")
     private Set<Clan> odradiliTrening= new HashSet<>();
