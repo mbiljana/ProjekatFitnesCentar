@@ -13,7 +13,7 @@ public class Clan extends Korisnik{
                 joinColumns = @JoinColumn(name="clan_id",referencedColumnName = "id"),
                 inverseJoinColumns = @JoinColumn(name = "trening_id",referencedColumnName = "id")
     )
-    private Set<ListaTreninga> odradjeniTreninzi = new HashSet<>();
+    private Set<Trening> treninzi = new HashSet<>();
 
     @ManyToMany
     @JoinTable(name = "prijavljeniTreninzi",
@@ -29,12 +29,12 @@ public class Clan extends Korisnik{
     )
     private Set<OcenaTreninga> ocene = new HashSet<>();
 
-    public Set<ListaTreninga> getOdradjeniTreninzi() {
-        return odradjeniTreninzi;
+    public Set<Trening> getTreninzi() {
+        return treninzi;
     }
 
-    public void setOdradjeniTreninzi(Set<ListaTreninga> odradjeniTreninzi) {
-        this.odradjeniTreninzi = odradjeniTreninzi;
+    public void setTreninzi(Set<Trening> treninzi) {
+        this.treninzi = treninzi;
     }
 
     public Set<Trening> getPrijavljeniTreninzi() {
@@ -45,11 +45,17 @@ public class Clan extends Korisnik{
         this.prijavljeniTreninzi = prijavljeniTreninzi;
     }
 
-    public Set<OcenaTreninga> getOceneTreninga() {
+    public Set<OcenaTreninga> getOcene() {
         return ocene;
     }
 
-    public void setOceneTreninga(Set<OcenaTreninga> ocene) {
+    public void setOcene(Set<OcenaTreninga> ocene) {
+        this.ocene = ocene;
+    }
+
+    public Clan(Set<Trening> treninzi, Set<Trening> prijavljeniTreninzi, Set<OcenaTreninga> ocene) {
+        this.treninzi = treninzi;
+        this.prijavljeniTreninzi = prijavljeniTreninzi;
         this.ocene = ocene;
     }
 

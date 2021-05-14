@@ -20,7 +20,7 @@ public class Sala implements Serializable {
                 joinColumns = @JoinColumn(name = "sala_id",referencedColumnName = "id"),
                 inverseJoinColumns = @JoinColumn(name = "termin_id",referencedColumnName = "id")
     )
-    private Set<ListaTreninga>listaTreninga = new HashSet<>();
+    private Set<ListaTreninga>listaTreningaTerminska = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
     private FitnessCentar fitnessCentar;

@@ -15,11 +15,13 @@ public class ListaTreninga implements Serializable {
     @Column
     private int brojPrijavljenih;
 
-    @ManyToMany(mappedBy = "listaTreninga")
+    @ManyToMany(mappedBy = "listaTreningaTerminska")
     private Set<Sala> sale = new HashSet<>();
 
     @ManyToMany(mappedBy = "listaTreninga")
     private Set<RasporedTreninga> rasporediTreninga = new HashSet<>();
+
+
 
 
 

@@ -18,11 +18,16 @@ insert into FITNESS_CENTAR(id,adresa_centra,broj_telefona_centrale, email_centra
 values (22,'Danila Kisa 26','02548756','fitnesscentar2@gmail.com','Be fit 2');
 insert into FITNESS_CENTAR(id,adresa_centra,broj_telefona_centrale, email_centra,naziv_centra)
 values (23,'Maksima Gorkog 12','02548757','fitnesscentar3@gmail.com','Be fit 3');
-//insert into TRENING(id,naziv,opis,tip_treninga,trajanje,trener_id)
-//values (25,'Yoga za zene','Opustajuci trening za rastezanje tela i oslobadjannje od stresa',0,'60 min',45);
-//insert into TRENING(id,naziv,opis,tip_treninga,trajanje,trener_id)
-//values (25,'Cardio za zene','Kratki treninzi za gubljenje masnih naslaga',2,'30 min',43);
-
+insert into TRENING(id,naziv,opis,tip_treninga,trajanje,trener_id)
+values (25,'Yoga za zene','Opustajuci trening za rastezanje tela i oslobadjannje od stresa',0,'60 min',45);
+insert into TRENING(id,naziv,opis,tip_treninga,trajanje,trener_id)
+values (26,'Cardio za zene','Kratki treninzi za gubljenje masnih naslaga',2,'30 min',43);
+insert into TRENER(id,aktivan,DATUMRODJENJA,email,ime,korisnickoime,lozinka,prezime,telefon,uloga,prosecna_ocena,fitness_centar_id)
+values (43,true,'1999-05-23','trener1@gmail.com','Miroslav','trener1','16843','Mirkovic','124554',1,4.2,21);
+insert into TRENER(id,aktivan,DATUMRODJENJA,email,ime,korisnickoime,lozinka,prezime,telefon,uloga,prosecna_ocena,fitness_centar_id)
+values (44,true,'1998-05-25','trener2@gmail.com','Ana','trener2','anaana','Aleksic','84655445',1,4.5,22);
+insert into TRENER(id,aktivan,DATUMRODJENJA,email,ime,korisnickoime,lozinka,prezime,telefon,uloga,prosecna_ocena,fitness_centar_id)
+values (45,true,'1995-01-21','trener3@gmail.com','Aleksandar','trener3','hhyyjhg','Jankovic','05545245',1,3.5,23);
 
 insert into LISTA_TRENINGA(id,broj_prijavljenih)
 values (31,16);
@@ -30,3 +35,8 @@ insert into LISTA_TRENINGA(id,broj_prijavljenih)
 values (32,24);
 insert into LISTA_TRENINGA(id,broj_prijavljenih)
 values (33,9);
+
+insert into OCENA_TRENINGA(id,ocena,trenig_id)
+values (101,5.0,25);
+insert into OCENA_TRENINGA(id,ocena,trenig_id)
+values (102,4.0,26);
