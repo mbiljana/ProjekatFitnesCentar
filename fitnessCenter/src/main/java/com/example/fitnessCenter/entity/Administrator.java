@@ -1,13 +1,14 @@
 package com.example.fitnessCenter.entity;
 
-import jdk.nashorn.internal.objects.annotations.Getter;
-import jdk.nashorn.internal.objects.annotations.Setter;
-
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import javax.persistence.Entity;
 
-
+@Getter
+@Setter
+@AllArgsConstructor
 @Entity
 public class Administrator extends Korisnik{
-    public Administrator() {
-    }
+
 }

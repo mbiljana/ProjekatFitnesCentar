@@ -3,6 +3,13 @@ package com.example.fitnessCenter.entity;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
 
 @Entity
 public class Trener extends Korisnik {
