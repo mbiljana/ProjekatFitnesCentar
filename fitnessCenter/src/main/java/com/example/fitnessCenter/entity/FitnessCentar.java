@@ -35,7 +35,7 @@ public class FitnessCentar implements Serializable {
     private Set<Sala> sale = new HashSet<>();
 
     @OneToMany(mappedBy = "fitnessCentar",fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
-    private Set<RasporedTreninga> rasporediTreninga = new HashSet<>();
+    private Set<ListaTreninga> rasporediTreninga = new HashSet<>();
 
     public FitnessCentar() {
     }

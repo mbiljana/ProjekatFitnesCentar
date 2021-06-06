@@ -39,7 +39,7 @@ public class Trening implements Serializable {
     private Set<Clan> prijavljeniClanovi = new HashSet<>();
 
     @ManyToMany(mappedBy = "trening")
-    private Set<RasporedTreninga> rasporediTreninga = new HashSet<>();
+    private Set<ListaTreninga> rasporediTreninga = new HashSet<>();
 
     public Trening() {
     }

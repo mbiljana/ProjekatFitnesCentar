@@ -26,12 +26,7 @@ public class RasporedTreninga implements Serializable {
     )
     private Set<Trening> trening = new HashSet<>();
 
-    @ManyToMany
-    @JoinTable(name = "terminiTreninga",
-            joinColumns = @JoinColumn(name = "raspored_treninga_id",referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "lista_treninga_id",referencedColumnName = "id")
-    )
-    private Set<ListaTreninga> listaTreninga = new HashSet<>();
+
 
     @ManyToOne(fetch = FetchType.EAGER)
     private FitnessCentar fitnessCentar;
