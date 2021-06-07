@@ -17,7 +17,7 @@ public class KorisnikController {
 
     private KorisnikService korisnikService;
 
-    @PostMapping(
+   /* @PostMapping(
             value="/login",
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
@@ -26,12 +26,12 @@ public class KorisnikController {
         if(korisnik==null){
             throw new Exception("Greska");
         }
-        if(korisnik.GetAktivan()==false){
+        if(korisnik.getAktivan()==false){
             throw new Exception("Korisnik nije aktivan"); //korisnik mora da bude aktivan
         }
         KorisnikDTO korisnikDTO= new KorisnikDTO(korisnik.getId(),korisnik.getIme(),
-                korisnik.getPrezime(),korisnik.getKorisnicko_ime(),korisnik.getLozinka(),korisnik.getKontakt_telefon(),
-                korisnik.getE_mail(),korisnik.getDatum_rodjenja(),korisnik.getUloga(),true);
+                korisnik.getPrezime(),korisnik.getKorisnickoIme(),korisnik.getLozinka(),korisnik.getTelefon(),
+                korisnik.getEmail(),korisnik.getDatumRodjenja(),korisnik.getUloga(),true);
         return new ResponseEntity<>(korisnikDTO, HttpStatus.OK);
-    }
+    } */
 }

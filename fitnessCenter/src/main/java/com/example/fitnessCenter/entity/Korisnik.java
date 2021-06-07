@@ -5,7 +5,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 
-//@Entity
 @MappedSuperclass
 public class Korisnik implements Serializable {
     @Id
@@ -33,5 +32,43 @@ public class Korisnik implements Serializable {
     public Korisnik() {
     }
 
+    public Long getId() {
+        return id;
+    }
 
+    public String getKorisnickoIme() {
+        return korisnickoIme;
+    }
+
+    public String getLozinka() {
+        return lozinka;
+    }
+
+    public String getIme() {
+        return ime;
+    }
+
+    public String getPrezime() {
+        return prezime;
+    }
+
+    public String getTelefon() {
+        return telefon;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Date getDatumRodjenja() {
+        return datumRodjenja;
+    }
+
+    public Uloga getUloga() {
+        return uloga;
+    }
+
+    public Boolean getAktivan() {
+        return aktivan;
+    }
 }

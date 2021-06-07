@@ -10,7 +10,10 @@ import java.util.List;
 @Repository
 public interface KorisnikRepository extends JpaRepository<Korisnik,Long> {
 
+    /*
     Korisnik findByKorisnickoIme(String korisnicko);
     Korisnik findByKorisnickoImeAndLozinka(String korisnicko, String lozinka);
     List<Korisnik> findAllByUloga(Uloga uloga);
+
+     */
 }

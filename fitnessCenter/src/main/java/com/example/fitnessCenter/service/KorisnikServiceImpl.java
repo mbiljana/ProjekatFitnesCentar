@@ -9,6 +9,7 @@ import java.util.List;
 
 public class KorisnikServiceImpl implements KorisnikService{
 
+    /*
     @Autowired
 private KorisnikRepository korisnikRepository;
 
@@ -45,7 +46,7 @@ private KorisnikRepository korisnikRepository;
         Korisnik korisnik1 = this.korisnikRepository.findByKorisnickoImeAndLozinka(korisnik.getKorisnickoIme(),korisnik.getLoznika());
         return korisnik1;
     }
-
+*/
 
 
 }
