@@ -6,3 +6,4 @@ insert into ADMINISTRATOR(id,aktivan,DATUMRODJENJA,email,ime,korisnickoime,lozin
 values (3,true,'1994-02-03','marijana@gmail.com','Marijana','pmarijana','mp1212','Peric','062545875',0);
 
 
+

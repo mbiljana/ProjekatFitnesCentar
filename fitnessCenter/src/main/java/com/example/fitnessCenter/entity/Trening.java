@@ -8,9 +8,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
+/*@Getter
 @Setter
-@AllArgsConstructor
+@AllArgsConstructor */
 
 @Entity
 public class Trening implements Serializable {
@@ -21,7 +21,7 @@ public class Trening implements Serializable {
     private String naziv;
     @Column
     private String opis;
-    @Column(nullable = false)
+    @Column(name = "TIPTRENINGA" ,nullable = false)
     private TipTreninga tipTreninga;
     @Column(nullable = false)
     private String trajanje;
@@ -44,5 +44,51 @@ public class Trening implements Serializable {
     public Trening() {
     }
 
+    public Trening(Long id, String naziv, String opis, TipTreninga tipTreninga, String trajanje) {
+        this.id = id;
+        this.naziv = naziv;
+        this.opis = opis;
+        this.tipTreninga = tipTreninga;
+        this.trajanje = trajanje;
+    }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNaziv() {
+        return naziv;
+    }
+
+    public void setNaziv(String naziv) {
+        this.naziv = naziv;
+    }
+
+    public String getOpis() {
+        return opis;
+    }
+
+    public void setOpis(String opis) {
+        this.opis = opis;
+    }
+
+    public TipTreninga getTipTreninga() {
+        return tipTreninga;
+    }
+
+    public void setTipTreninga(TipTreninga tipTreninga) {
+        this.tipTreninga = tipTreninga;
+    }
+
+    public String getTrajanje() {
+        return trajanje;
+    }
+
+    public void setTrajanje(String trajanje) {
+        this.trajanje = trajanje;
+    }
 }
