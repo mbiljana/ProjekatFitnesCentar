@@ -114,6 +114,17 @@ public class Korisnik implements Serializable {
         return aktivan;
     }
 
+
+    public Korisnik(String korisnickoIme, String lozinka, String ime, String prezime, String telefon, String email, Date datumRodjenja, Uloga uloga) {
+        this.korisnickoIme = korisnickoIme;
+        this.lozinka = lozinka;
+        this.ime = ime;
+        this.prezime = prezime;
+        this.telefon = telefon;
+        this.email = email;
+        this.datumRodjenja = datumRodjenja;
+        this.uloga = uloga;
+    }
     public Korisnik(String korisnickoIme, String lozinka, String ime, String prezime, String telefon, String email, Date datumRodjenja, Uloga uloga, Boolean aktivan) {
         this.korisnickoIme = korisnickoIme;
         this.lozinka = lozinka;
