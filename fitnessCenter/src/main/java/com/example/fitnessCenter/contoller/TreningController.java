@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "api/pregledTreninga")
+@RequestMapping(value = "/api/pregledTreninga")
 public class TreningController {
     @Autowired
     public TreningService treningService;
@@ -30,7 +30,7 @@ public class TreningController {
         for(Trening trening : treningList){
             //kreira se treningDTO za svaki trening koga je vratila metoda iz servisa
             //ubacuje se u listu treningDTOS
-            TreningDTO treningDTO = new TreningDTO(trening.getId(),trening.getNaziv(),trening.getOpis(),trening.getTipTreninga(),trening.getTrajanje());
+            TreningDTO treningDTO = new TreningDTO(trening.getId(),trening.getNaziv(),trening.getOpis(),trening.getTipTreninga(),trening.getTrajanje(),trening.getTrener());
             treningDTOS.add(treningDTO);
         }
         //vraca se odgovor 200 OK
@@ -86,7 +86,7 @@ public class TreningController {
         return new ResponseEntity<>(treningDTOS,HttpStatus.OK);
     }
 
-    //sortiranje treninga po nazivu
+    //sortiranje treninga po tipu treninga
     @GetMapping(value = "/sortTipTreninga",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<TreningDTO>>sortTipTreninga(){
         List<Trening> treninzi = treningService.sortTipTreninga();
@@ -108,7 +108,7 @@ public class TreningController {
 
     //dobavljanje treninga po tipu
     @GetMapping(value="/tipTreninga/{tipTreninga}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<TreningDTO>>getTreningByTipTreninga(@PathVariable(name = "tipTreninga")TipTreninga tip){
+    public ResponseEntity<List<TreningDTO>>getTreningByTipTreninga(@PathVariable(name = "tipTreninga")String tip){
         List<Trening> treningList = treningService.findAllByTipTreninga(tip);
         List<TreningDTO> treningDTOS = new ArrayList<>();
         for(Trening t : treningList){

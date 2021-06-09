@@ -4,13 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 
-/*@Getter
-@Setter
-@AllArgsConstructor */
 
 @Entity
 public class Trening implements Serializable {
@@ -21,16 +15,22 @@ public class Trening implements Serializable {
     private String naziv;
     @Column
     private String opis;
+    /*
     @Column(name = "TIPTRENINGA" ,nullable = false)
     private TipTreninga tipTreninga;
+     */
+    @Column(name = "TIPTRENINGA",nullable = false)
+    private String tipTreninga;
     @Column(nullable = false)
     private String trajanje;
 
     @OneToMany(mappedBy = "trening", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Set<OcenaTreninga> oceneTreninga = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Trener> treneri = new HashSet<>();
+
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Trener trener;
 
     @ManyToMany(mappedBy = "treninzi")
     private Set<Clan> odradiliTrening= new HashSet<>();
@@ -44,12 +44,21 @@ public class Trening implements Serializable {
     public Trening() {
     }
 
-    public Trening(Long id, String naziv, String opis, TipTreninga tipTreninga, String trajanje) {
+    public Trening(Long id, String naziv, String opis, String tipTreninga, String trajanje) {
         this.id = id;
         this.naziv = naziv;
         this.opis = opis;
         this.tipTreninga = tipTreninga;
         this.trajanje = trajanje;
+    }
+
+    public Trening(Long id, String naziv, String opis, String tipTreninga, String trajanje, Trener trener) {
+        this.id = id;
+        this.naziv = naziv;
+        this.opis = opis;
+        this.tipTreninga = tipTreninga;
+        this.trajanje = trajanje;
+        this.trener = trener;
     }
 
     public Long getId() {
@@ -76,11 +85,11 @@ public class Trening implements Serializable {
         this.opis = opis;
     }
 
-    public TipTreninga getTipTreninga() {
+    public String getTipTreninga() {
         return tipTreninga;
     }
 
-    public void setTipTreninga(TipTreninga tipTreninga) {
+    public void setTipTreninga(String tipTreninga) {
         this.tipTreninga = tipTreninga;
     }
 
@@ -90,5 +99,13 @@ public class Trening implements Serializable {
 
     public void setTrajanje(String trajanje) {
         this.trajanje = trajanje;
+    }
+
+    public Trener getTrener() {
+        return trener;
+    }
+
+    public void setTrener(Trener trener) {
+        this.trener = trener;
     }
 }

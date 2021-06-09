@@ -39,4 +39,19 @@ public class FitnessCentar implements Serializable {
 
     public FitnessCentar() {
     }
+
+    public FitnessCentar(Long id, String nazivCentra, String adresaCentra, String brojTelefonaCentrale, String emailCentra) {
+        this.id = id;
+        this.nazivCentra = nazivCentra;
+        this.adresaCentra = adresaCentra;
+        this.brojTelefonaCentrale = brojTelefonaCentrale;
+        this.emailCentra = emailCentra;
+    }
+
+    public FitnessCentar(String nazivCentra, String adresaCentra, String brojTelefonaCentrale, String emailCentra) {
+        this.nazivCentra = nazivCentra;
+        this.adresaCentra = adresaCentra;
+        this.brojTelefonaCentrale = brojTelefonaCentrale;
+        this.emailCentra = emailCentra;
+    }
 }

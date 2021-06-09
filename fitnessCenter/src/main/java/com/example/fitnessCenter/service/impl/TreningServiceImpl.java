@@ -3,7 +3,6 @@ package com.example.fitnessCenter.service.impl;
 import com.example.fitnessCenter.entity.TipTreninga;
 import com.example.fitnessCenter.entity.Trening;
 import com.example.fitnessCenter.repository.TreningRepository;
-import com.example.fitnessCenter.service.TrenerService;
 import com.example.fitnessCenter.service.TreningService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -73,8 +72,13 @@ public class TreningServiceImpl implements TreningService {
 
     //dobavljanje po tipu
     @Override
-    public List<Trening> findAllByTipTreninga(TipTreninga tip){
+    public List<Trening> findAllByTipTreninga(String tip){
         return treningRepository.findAllByTipTreninga(tip);
+    }
+
+    @Override
+    public List<Trening> findByTipTreninga(String tipTreninga){
+        return  treningRepository.findByTipTreninga(tipTreninga);
     }
 
 

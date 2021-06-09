@@ -13,5 +13,7 @@ public interface TreningRepository extends JpaRepository<Trening,Long> {
     List<Trening> findAllByNazivOrderByNaziv (String naziv);
     List<Trening> findAllByOrderByNaziv();
     List<Trening> findAllByOrderByTipTreninga();
-    List<Trening> findAllByTipTreninga(TipTreninga tip);
+    List<Trening> findAllByTipTreninga(String tip);
+    List<Trening> findByTipTreninga(String tip);
+
 }

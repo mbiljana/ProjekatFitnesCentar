@@ -1,6 +1,7 @@
 package com.example.fitnessCenter.entity.DTO;
 
 import com.example.fitnessCenter.entity.TipTreninga;
+import com.example.fitnessCenter.entity.Trener;
 
 import java.io.Serializable;
 
@@ -8,10 +9,11 @@ public class TreningDTO implements Serializable {
     private Long id;
     private String naziv;
     private String opis;
-    private TipTreninga tip;
+    private String tip;
     private String trajanje;
+    private Trener trener;
 
-    public TreningDTO(Long id, String naziv, String opis, TipTreninga tip, String trajanje) {
+    public TreningDTO(Long id, String naziv, String opis, String tip, String trajanje) {
         this.id = id;
         this.naziv = naziv;
         this.opis = opis;
@@ -46,11 +48,11 @@ public class TreningDTO implements Serializable {
         this.opis = opis;
     }
 
-    public TipTreninga getTip() {
+    public String getTip() {
         return tip;
     }
 
-    public void setTip(TipTreninga tip) {
+    public void setTip(String tip) {
         this.tip = tip;
     }
 
@@ -62,10 +64,27 @@ public class TreningDTO implements Serializable {
         this.trajanje = trajanje;
     }
 
-    public TreningDTO(String naziv, String opis, TipTreninga tip, String trajanje) {
+    public Trener getTrener() {
+        return trener;
+    }
+
+    public void setTrener(Trener trener) {
+        this.trener = trener;
+    }
+
+    public TreningDTO(String naziv, String opis, String tip, String trajanje) {
         this.naziv = naziv;
         this.opis = opis;
         this.tip = tip;
         this.trajanje = trajanje;
+    }
+
+    public TreningDTO(Long id, String naziv, String opis, String tip, String trajanje, Trener trener) {
+        this.id = id;
+        this.naziv = naziv;
+        this.opis = opis;
+        this.tip = tip;
+        this.trajanje = trajanje;
+        this.trener = trener;
     }
 }

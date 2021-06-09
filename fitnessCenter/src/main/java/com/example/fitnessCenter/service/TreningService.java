@@ -15,6 +15,7 @@ public interface TreningService {
     void delete(Long id);
     List<Trening> sortNaziv();
     List<Trening> sortTipTreninga();
-    List<Trening> findAllByTipTreninga(TipTreninga tip);
+    List<Trening> findAllByTipTreninga(String tip);
+    List<Trening> findByTipTreninga(String tip);
 
 }
