@@ -1,24 +1,23 @@
 $(document).ready(function(){
-
-    $("#registracijaKorisnika").submit(function(event) {
+    $("#registracijaButton").submit(function(event) {
 
         event.preventDefault();
         var korisnickoIme = $("#korisnickoIme").val();
         var lozinka = $("#lozinka").val();
         var ime = $("#ime").val();
         var prezime = $("#prezime").val();
-        var telefon = $("#telefon").val();
-        var email = $("#email").val();
+        var telefon = $("#kontaktTelefon").val();
+        var email = $("#eadresa").val();
         var datumRodjenja = $("#datumRodjenja").val();
         var obj = JSON.stringify({
             "korisnickoIme" : korisnickoIme,
             "lozinka" : lozinka,
             "ime" : ime,
             "prezime" : prezime,
-            "telefon" : telefon,
-            "email" : email,
+            "kontaktTelefon" : telefon,
+            "eadresa" : email,
             "datumRodjenja" : datumRodjenja,
-            "uloga" : "CLAN"
+            "uloga" : 2
         });
 
         $.ajax({
@@ -29,7 +28,7 @@ $(document).ready(function(){
             data: obj,
             success: function () {
                 alert(obj);
-                window.location.href = "pocetna.html";
+                window.location.href = "index.html";
             },
             error: function (data) {
                 alert("Da li se poruka prenela?");

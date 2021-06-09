@@ -31,7 +31,7 @@ $(document).ready(function(){
                     localStorage.setItem('aktivan', data.aktivan);
                     localStorage.setItem('lozinka', data.lozinka);
 
-                    window.location.href = "pocetna.html";
+                    window.location.href = "index.html";
                 },
                 error: function (data) {
                     console.log("ERROR " + JSON.stringify(data));
