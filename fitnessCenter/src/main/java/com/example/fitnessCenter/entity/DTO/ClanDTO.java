@@ -1,16 +1,15 @@
 package com.example.fitnessCenter.entity.DTO;
 
+import com.example.fitnessCenter.entity.OcenaTreninga;
+import com.example.fitnessCenter.entity.Trening;
 import com.example.fitnessCenter.entity.Uloga;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-public class KorisnikDTO implements Serializable {
-
+public class ClanDTO implements Serializable {
 
     private Long id;
     private String korisnickoIme;
@@ -23,7 +22,44 @@ public class KorisnikDTO implements Serializable {
     private Uloga uloga;
     private Boolean aktivan;
 
-    public KorisnikDTO(Long id, String korisnickoIme, String lozinka, String ime, String prezime, String telefon, String email, Date datumRodjenja, Uloga uloga, Boolean aktivan) {
+    private Set<Trening> treninzi = new HashSet<>();
+    private Set<Trening> prijavljeniTreninzi = new HashSet<>();
+    private Set<OcenaTreninga> ocene = new HashSet<>();
+
+    public ClanDTO(Set<Trening> treninzi, Set<Trening> prijavljeniTreninzi, Set<OcenaTreninga> ocene) {
+        this.treninzi = treninzi;
+        this.prijavljeniTreninzi = prijavljeniTreninzi;
+        this.ocene = ocene;
+    }
+
+    public ClanDTO() {
+    }
+
+    public Set<Trening> getTreninzi() {
+        return treninzi;
+    }
+
+    public void setTreninzi(Set<Trening> treninzi) {
+        this.treninzi = treninzi;
+    }
+
+    public Set<Trening> getPrijavljeniTreninzi() {
+        return prijavljeniTreninzi;
+    }
+
+    public void setPrijavljeniTreninzi(Set<Trening> prijavljeniTreninzi) {
+        this.prijavljeniTreninzi = prijavljeniTreninzi;
+    }
+
+    public Set<OcenaTreninga> getOcene() {
+        return ocene;
+    }
+
+    public void setOcene(Set<OcenaTreninga> ocene) {
+        this.ocene = ocene;
+    }
+
+    public ClanDTO(Long id, String korisnickoIme, String lozinka, String ime, String prezime, String telefon, String email, Date datumRodjenja, Uloga uloga, Boolean aktivan) {
         this.id = id;
         this.korisnickoIme = korisnickoIme;
         this.lozinka = lozinka;
@@ -34,9 +70,6 @@ public class KorisnikDTO implements Serializable {
         this.datumRodjenja = datumRodjenja;
         this.uloga = uloga;
         this.aktivan = aktivan;
-    }
-
-    public KorisnikDTO() {
     }
 
     public Long getId() {

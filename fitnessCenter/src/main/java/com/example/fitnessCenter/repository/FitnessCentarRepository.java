@@ -11,4 +11,5 @@ public interface FitnessCentarRepository extends JpaRepository<FitnessCentar,Lon
 
     FitnessCentar findByNazivCentra(String naziv);
 
+
 }

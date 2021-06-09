@@ -2,6 +2,7 @@ package com.example.fitnessCenter.entity;
 
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import lombok.AllArgsConstructor;
@@ -63,4 +64,8 @@ public class Clan extends Korisnik{
     public Clan() {
 
     }
+    public Clan(String korisnickoIme, String lozinka, String ime, String prezime, String telefon, String email, Date datumRodjenja, Uloga uloga, Boolean aktivan){
+        super();
+    }
+
 }

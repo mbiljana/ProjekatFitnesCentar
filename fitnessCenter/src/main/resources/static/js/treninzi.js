@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     $.ajax({
         type:"GET",
-        url: "http://localhost:8080/api/pregledTreninga",
+        url: "http://localhost:8090/api/pregledTreninga",
         dataType:"json",
         success: function(data){
             console.log("SUCCESS: ", data);

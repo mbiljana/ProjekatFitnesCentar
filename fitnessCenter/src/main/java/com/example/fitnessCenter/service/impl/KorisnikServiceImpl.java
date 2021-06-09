@@ -1,13 +1,15 @@
-package com.example.fitnessCenter.service;
+package com.example.fitnessCenter.service.impl;
 
 import com.example.fitnessCenter.entity.DTO.PrijavaKorisnikaDTO;
 import com.example.fitnessCenter.entity.Korisnik;
 import com.example.fitnessCenter.repository.KorisnikRepository;
+import com.example.fitnessCenter.service.KorisnikService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-public class KorisnikServiceImpl implements KorisnikService{
+@Service
+public class KorisnikServiceImpl implements KorisnikService {
 
     /*
     @Autowired
