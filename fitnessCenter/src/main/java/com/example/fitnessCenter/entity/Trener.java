@@ -6,12 +6,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 
 @Entity
 public class Trener extends Korisnik {
@@ -38,6 +32,30 @@ public class Trener extends Korisnik {
         super(korisnickoIme, lozinka, ime, prezime, telefon, email, datumRodjenja, uloga, aktivan);
         this.prosecnaOcena = prosecnaOcena;
         this.listaTreninga = listaTreninga;
+        this.fitnessCentar = fitnessCentar;
+    }
+
+    public double getProsecnaOcena() {
+        return prosecnaOcena;
+    }
+
+    public void setProsecnaOcena(double prosecnaOcena) {
+        this.prosecnaOcena = prosecnaOcena;
+    }
+
+    public Set<Trening> getListaTreninga() {
+        return listaTreninga;
+    }
+
+    public void setListaTreninga(Set<Trening> listaTreninga) {
+        this.listaTreninga = listaTreninga;
+    }
+
+    public FitnessCentar getFitnessCentar() {
+        return fitnessCentar;
+    }
+
+    public void setFitnessCentar(FitnessCentar fitnessCentar) {
         this.fitnessCentar = fitnessCentar;
     }
 }

@@ -77,8 +77,8 @@ public class TreningServiceImpl implements TreningService {
     }
 
     @Override
-    public List<Trening> findByTipTreninga(String tipTreninga){
-        return  treningRepository.findByTipTreninga(tipTreninga);
+    public List<Trening> sortTrajanje(){
+        return treningRepository.findAllByOrderByTrajanje();
     }
 
 

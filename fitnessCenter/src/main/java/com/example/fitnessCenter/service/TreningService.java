@@ -16,6 +16,6 @@ public interface TreningService {
     List<Trening> sortNaziv();
     List<Trening> sortTipTreninga();
     List<Trening> findAllByTipTreninga(String tip);
-    List<Trening> findByTipTreninga(String tip);
+    List<Trening> sortTrajanje();
 
 }

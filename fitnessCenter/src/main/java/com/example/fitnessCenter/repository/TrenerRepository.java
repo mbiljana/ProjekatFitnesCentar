@@ -10,5 +10,6 @@ import java.util.Set;
 
 @Repository
 public interface TrenerRepository extends JpaRepository<Trener,Long> {
-
+    Trener findByKorisnickoImeAndLozinka(String korisnicko, String lozinka);
+    Trener findByKorisnickoImeAndLozinkaAndAktivan(String korisnicko, String lozinka, boolean aktivan);
 }

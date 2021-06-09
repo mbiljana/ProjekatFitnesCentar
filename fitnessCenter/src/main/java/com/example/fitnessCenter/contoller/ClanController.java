@@ -59,7 +59,7 @@ public class ClanController {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
         //u drugom slucaju
-        Clan clan = new Clan(clanDTO.getKorisnickoIme(),clanDTO.getLozinka(),clanDTO.getIme(),clanDTO.getPrezime(),clanDTO.getTelefon(),clanDTO.getEmail(),clanDTO.getDatumRodjenja(),clanDTO.getUloga(),true);
+        Clan clan = new Clan(clanDTO.getKorisnickoIme(),clanDTO.getLozinka(),clanDTO.getIme(),clanDTO.getPrezime(),clanDTO.getTelefon(),clanDTO.getEmail(),clanDTO.getDatumRodjenja(),clanDTO.getUloga(),true,true);
         clan.setAktivan(false);
         clanRepository.save(clan);
         ClanDTO clanDTO1 = new ClanDTO(clan.getId(),clan.getKorisnickoIme(),clan.getLozinka(),clan.getIme(),clan.getPrezime(),clan.getTelefon(),clan.getEmail(),clan.getDatumRodjenja(),clan.getUloga(),clan.getAktivan());

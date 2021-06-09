@@ -5,13 +5,7 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
-@AllArgsConstructor
 @Entity
 public class Clan extends Korisnik{
 
@@ -64,7 +58,7 @@ public class Clan extends Korisnik{
     public Clan() {
 
     }
-    public Clan(String korisnickoIme, String lozinka, String ime, String prezime, String telefon, String email, Date datumRodjenja, Uloga uloga, Boolean aktivan){
+    public Clan(String korisnickoIme, String lozinka, String ime, String prezime, String telefon, String email, Date datumRodjenja, Uloga uloga, Boolean aktivan,Boolean daLiJeRegistrovan){
         super();
     }
 

@@ -98,6 +98,18 @@ public class TreningController {
         return new ResponseEntity<>(treningDTOS,HttpStatus.OK);
     }
 
+    //sortiranje treninga po trajanju
+    @GetMapping(value = "/sortTrajanje",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<TreningDTO>>sortTrajanje(){
+        List<Trening> treninzi = treningService.sortTrajanje();
+        List<TreningDTO>treningDTOS = new ArrayList<>();
+        for(Trening t : treninzi){
+            TreningDTO treningDTO = new TreningDTO(t.getNaziv(),t.getOpis(),t.getTipTreninga(),t.getTrajanje());
+            treningDTOS.add(treningDTO);
+        }
+        return new ResponseEntity<>(treningDTOS,HttpStatus.OK);
+    }
+
     //dobavljanje treninga po nazivu
     @GetMapping(value="/naziv/{naziv}",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<TreningDTO>getTreningByNaziv(@PathVariable(name = "naziv") String naziv) {

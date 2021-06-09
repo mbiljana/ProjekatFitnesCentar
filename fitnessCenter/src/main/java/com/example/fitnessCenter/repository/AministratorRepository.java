@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AministratorRepository extends JpaRepository<Administrator,Long> {
+    Administrator findByKorisnickoImeAndLozinka(String korisnicko,String lozinka);
 }
