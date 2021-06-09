@@ -107,7 +107,7 @@ $(document).on('click','#sortTipTreninga',function() {
                 success: function (data) {
                     console.log("SUCCESS: ", data);
                     alert("Trazi se trening " + naziv);
-                    window.location.href = "pregledTreninga.html";
+                   // window.location.href = "pregledTreninga.html";
                     $('#pregledTreninga td').remove();
                     var row = "<tr>";
                     row += "<td>" + data['naziv'] + "</td>";
@@ -133,7 +133,7 @@ $(document).on('click','#sortTipTreninga',function() {
                 success: function (data) {
                     console.log("SUCCESS: ", data);
                     alert("Trazi se trening " + tip);
-                    window.location.href = "pregledTreninga.html";
+                    //window.location.href = "pregledTreninga.html";
                     $('#pregledTreninga td').remove();
                     var row = "<tr>";
                     row += "<td>" + data['naziv'] + "</td>";

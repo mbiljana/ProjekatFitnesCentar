@@ -13,10 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/korisnik")
@@ -75,6 +75,24 @@ public class KorisnikController {
                 noviKorisnik.getEmail(), noviKorisnik.getTelefon(), noviKorisnik.getUloga());
         return new ResponseEntity<>(korisnikDTO, HttpStatus.CREATED);
 
+    }
+
+
+    @GetMapping(value="/zahteviZaRegistraciju", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<RegistracijaTreneraDTO>> getRegistracijaTrenera() {
+        List<Trener> treneri = this.trenerService.findAll();
+
+        List<RegistracijaTreneraDTO> registracijaDTOS = new ArrayList<RegistracijaTreneraDTO>();
+
+        for(Trener t : treneri) {
+            if(t.getDaLiJeRegistrovan() == false) {
+                RegistracijaTreneraDTO trenerDTO = new RegistracijaTreneraDTO( t.getKorisnickoIme(), t.getIme(), t.getPrezime(), t.getLozinka(),
+                        t.getTelefon(), t.getEmail(), t.getDatumRodjenja(), t.getUloga());
+                registracijaDTOS.add(trenerDTO);
+            }
+
+        }
+        return new ResponseEntity<>(registracijaDTOS, HttpStatus.OK);
     }
 
 
