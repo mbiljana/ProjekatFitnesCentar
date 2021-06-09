@@ -50,7 +50,7 @@ $(document).on('click','#sortNaziv',function(){
 $(document).on('click','#sortTipTreninga',function(){
     $.ajax({
         type:"GET",
-        url:"http://localhost:8080/api/pregledTreninga/sortTipTreninga",
+        url:"http://localhost:8090/api/pregledTreninga/sortTipTreninga",
         dataType:"json",
         success:function(data){
 
@@ -69,5 +69,57 @@ $(document).on('click','#sortTipTreninga',function(){
             console.log("ERROR: ",data);
         }
 
+    });
+
+    $(document).on("submit","naziv",function(event){
+        event.preventDefault();
+
+        var naziv=$("#nazivTr").val();
+        $.ajax({
+            type:"GET",
+            url:"http://localhost:8090/api/pregledTreninga/naziv/"+naziv,
+            dataType:"json",
+            success:function(data){
+                console.log("SUCCESS: ",data);
+                alert("Trazi se trening "+ naziv);
+                window.location.href="pregledTreninga.html";
+                $('#pregledTreninga td').remove();
+                var row="<tr>";
+                row +="<td>" + data['naziv'] + "</td>";
+                row +="<td>" + data['opis'] + "</td>";
+                row +="<td>" + data['tip'] +"</td>";
+                row +="<td>" + data['trajanje'] +"</td>";
+                $('#pregledTreninga').append(row);
+            },
+            error: function () {
+                alert("Greška!");
+            }
+        });
+    });
+
+    $(document).on("submit","tipTreninga",function(event){
+        event.preventDefault();
+
+        var tip=$("#tipTr").val();
+        $.ajax({
+            type:"GET",
+            url:"http://localhost:8090/api/pregledTreninga/tipTreninga/"+tip,
+            dataType:"json",
+            success:function(data){
+                console.log("SUCCESS: ",data);
+                alert("Trazi se trening "+ tip);
+                window.location.href="pregledTreninga.html";
+                $('#pregledTreninga td').remove();
+                var row="<tr>";
+                row +="<td>" + data['naziv'] + "</td>";
+                row +="<td>" + data['opis'] + "</td>";
+                row +="<td>" + data['tip'] +"</td>";
+                row +="<td>" + data['trajanje'] +"</td>";
+                $('#pregledTreninga').append(row);
+            },
+            error: function () {
+                alert("Greška!");
+            }
+        });
     });
 });
