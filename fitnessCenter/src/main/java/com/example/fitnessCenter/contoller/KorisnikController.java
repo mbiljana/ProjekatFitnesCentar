@@ -38,7 +38,8 @@ public class KorisnikController {
 
         //dto objekat prijavljenog
         PrijavljenKorisnikDTO prijavljenDTO = new PrijavljenKorisnikDTO();
-
+        System.out.println("String:" + clan.getKorisnickoIme());
+        System.out.println(clan.getLozinka());
         if(clan != null){
             if((clan.getAktivan() == false) && (clan.getDaLiJeRegistrovan() == false)){
                 throw  new Exception("Ovaj nalog je nepostojeci.");
