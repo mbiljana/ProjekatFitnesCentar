@@ -9,7 +9,12 @@ import java.util.List;
 @Repository
 public interface FitnessCentarRepository extends JpaRepository<FitnessCentar,Long> {
 
-    FitnessCentar findByNazivCentra(String naziv);
+    List<FitnessCentar> findByNazivCentra(String naziv);
+    List<FitnessCentar> findByAdresaCentra(String adresa);
+    List<FitnessCentar> findByBrojTelefonaCentrale(String broj);
+    List<FitnessCentar> findByEmailCentra(String mail);
+
+
 
 
 }

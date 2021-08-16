@@ -7,4 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SalaRepository extends JpaRepository<Sala,Long> {
 
+    List<Sala> findAll();
+    void deleteById(Long id);
+
 }
