@@ -18,6 +18,8 @@ public class RasporedTreninga implements Serializable {
     private Date datumPocetkaTreninga;
     @Column
     private Date datumKrajaTreninga;
+    @Column
+    private int brojClanova;
 
     @ManyToMany
     @JoinTable(name = "treninzi",

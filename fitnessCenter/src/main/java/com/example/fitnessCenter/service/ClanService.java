@@ -6,9 +6,10 @@ import java.util.List;
 
 public interface ClanService {
     Clan findByKorisnickoIme(String korisnickoIme);
-    Clan findByKorisnickoImeAndLozinka(String korisnickoIme, String lozinka);
+    Clan getByKorisnickoImeAndLozinka(String korisnickoIme, String lozinka);
     Clan findByKorisnickoImeAndLozinkaAndAktivan(String korisnickoIme, String lozinka, boolean aktivan);
     Clan save (Clan clan) throws Exception;
+    Clan update (Clan clan) throws Exception;
     void delete(Long id);
     List<Clan> findAll();
     Clan findOne(Long id);

@@ -10,34 +10,34 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public class TreningServiceImpl implements TreningService {
+    private final TreningRepository treningRepository;
+
     @Autowired
-    private TreningRepository treningRepository;
+    public TreningServiceImpl(TreningRepository treningRepository) {this.treningRepository = treningRepository;}
 
 
-    //trazenje po nazivu
-    @Override
-    public Trening findByNaziv(String naziv){
-        return treningRepository.findByNaziv(naziv);
-    }
 
 
     //sortirano po nazivu
     @Override
     public List<Trening>findAllByNazivOrderByNaziv(String naziv){
-        return treningRepository.findAllByNazivOrderByNaziv(naziv);
+        return treningRepository.findByNazivOrderByNaziv(naziv);
     }
 
     //jedan trening
     @Override
     public Trening findOne(Long id){
-        return treningRepository.getOne(id);
+        Trening trening = this.treningRepository.findById(id).get();
+        return trening;
+        //return treningRepository.getOne(id);
     }
 
 
     //svi treninzi
     @Override
     public List<Trening> findAll(){
-        return treningRepository.findAll();
+        List<Trening> treninzi = this.treningRepository.findAll();
+        return treninzi;
     }
 
 
@@ -80,6 +80,23 @@ public class TreningServiceImpl implements TreningService {
     public List<Trening> sortTrajanje(){
         return treningRepository.findAllByOrderByTrajanje();
     }
+
+    @Override
+    public Trening update(Trening trening) throws Exception {
+        Trening treningZaIzmenu = this.treningRepository.findById(trening.getId()).get();
+        if(trening.getId() == null) {
+            throw new Exception("Trening ne postoji");
+        }
+        treningZaIzmenu.setNaziv(trening.getNaziv());
+        treningZaIzmenu.setOpis(trening.getOpis());
+        treningZaIzmenu.setTrener(trening.getTrener());
+        treningZaIzmenu.setTipTreninga(trening.getTipTreninga());
+        treningZaIzmenu.setTrajanje(trening.getTrajanje());
+
+        Trening izmenjenTrening = this.treningRepository.save(treningZaIzmenu);
+        return izmenjenTrening;
+    }
+
 
 
 

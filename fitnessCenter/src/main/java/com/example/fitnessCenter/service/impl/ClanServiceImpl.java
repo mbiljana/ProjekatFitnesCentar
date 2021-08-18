@@ -1,5 +1,6 @@
 package com.example.fitnessCenter.service.impl;
 
+import com.example.fitnessCenter.entity.Administrator;
 import com.example.fitnessCenter.entity.Clan;
 import com.example.fitnessCenter.entity.Trening;
 import com.example.fitnessCenter.repository.ClanRepository;
@@ -11,9 +12,12 @@ import java.util.List;
 
 @Service
 public class ClanServiceImpl implements ClanService {
+    private  final ClanRepository clanRepository;
 
     @Autowired
-    public ClanRepository clanRepository;
+    public ClanServiceImpl(ClanRepository clanRepository){
+        this.clanRepository = clanRepository;
+    }
 
     @Override
     public Clan findByKorisnickoIme(String korisnickoIme) {
@@ -21,13 +25,14 @@ public class ClanServiceImpl implements ClanService {
     }
 
     @Override
-    public Clan findByKorisnickoImeAndLozinka(String korisnickoIme, String lozinka) {
-        return clanRepository.findByKorisnickoImeAndLozinka(korisnickoIme,lozinka);
+    public Clan getByKorisnickoImeAndLozinka(String korisnicko, String lozinka) {
+        Clan clan = this.clanRepository.findByKorisnickoImeAndLozinka(korisnicko,lozinka);
+        return clan;
     }
 
     @Override
     public Clan findByKorisnickoImeAndLozinkaAndAktivan(String korisnickoIme, String lozinka, boolean aktivan) {
-        return clanRepository.findByKorisnickoImeAndLozinkaAndAktivan(korisnickoIme,lozinka,aktivan);
+        return this.clanRepository.findByKorisnickoImeAndLozinkaAndAktivan(korisnickoIme,lozinka,aktivan);
     }
 
     @Override
@@ -35,21 +40,39 @@ public class ClanServiceImpl implements ClanService {
         if(clan.getId() != null){
             throw new Exception("ID mora biti jedinstven");
         }
-        Clan noviClan = clanRepository.save(clan);
-        return  noviClan;
+        Clan novi = this.clanRepository.save(clan);
+        return  novi;
     }
 
     @Override
     public void delete(Long id){
-        clanRepository.deleteById(id);
+        this.clanRepository.deleteById(id);
     }
 
     @Override
     public List<Clan> findAll(){
-        return clanRepository.findAll();
+
+        List<Clan> clanovi = this.clanRepository.findAll();
+        return clanovi;
     }
     @Override
-    public Clan findOne(Long id){
-        return clanRepository.getOne(id);
+    public Clan findOne(Long id) {
+
+        Clan clan = this.clanRepository.findById(id).get();
+        return clan;
+    }
+    @Override
+    public Clan update (Clan admin) throws Exception{
+        Clan updated = this.clanRepository.findById(admin.getId()).get();
+        if(admin.getId() == null){
+            throw  new Exception("Greska! Nepostojeci korisnik!");
+        }
+        updated.setDatumRodjenja(admin.getDatumRodjenja());
+        updated.setEmail(admin.getEmail());
+        updated.setIme(admin.getIme());
+        updated.setTelefon(admin.getTelefon());
+        updated.setPrezime(admin.getPrezime());
+        Clan promenjen = clanRepository.save(updated);
+        return promenjen;
     }
 }

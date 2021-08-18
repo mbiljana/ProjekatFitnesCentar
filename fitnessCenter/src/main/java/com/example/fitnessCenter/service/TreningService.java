@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 public interface TreningService {
-    Trening findByNaziv(String naziv);
+    //Trening findByNaziv(String naziv);
     List<Trening> findAllByNazivOrderByNaziv(String naziv);
     Trening findOne(Long id);
     List<Trening> findAll();
@@ -17,5 +17,7 @@ public interface TreningService {
     List<Trening> sortTipTreninga();
     List<Trening> findAllByTipTreninga(String tip);
     List<Trening> sortTrajanje();
+
+    Trening update(Trening trening) throws Exception;
 
 }
