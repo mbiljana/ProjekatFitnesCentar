@@ -13,9 +13,8 @@ public class Trener extends Korisnik {
     @Column
     private double prosecnaOcena;
 
-
-    @OneToMany(mappedBy = "trener", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
+    @OneToMany(mappedBy = "trener", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Trening> listaTreninga = new HashSet<Trening>();
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -26,6 +25,13 @@ public class Trener extends Korisnik {
 
     public Trener(String korisnickoIme, String lozinka, String ime, String prezime, String telefon, String email, Date datumRodjenja, Uloga uloga, Boolean aktivan) {
         super(korisnickoIme, lozinka, ime, prezime, telefon, email, datumRodjenja, uloga, aktivan);
+    }
+
+    public Trener(String korisnickoIme, String lozinka, String ime, String prezime, String telefon, String email, Date datumRodjenja, Uloga uloga) {
+        super(korisnickoIme, lozinka, ime, prezime, telefon, email, datumRodjenja, uloga);
+    }
+    public Trener(String korisnickoIme, String lozinka, String ime, String prezime, String telefon, String email, Date datumRodjenja, Uloga uloga, boolean aktivan,boolean daLiJeRegistrovan) {
+        super(korisnickoIme, lozinka, ime, prezime, telefon, email, datumRodjenja, uloga, aktivan, daLiJeRegistrovan);
     }
 
     public Trener(Long id, String korisnickoIme, String lozinka, String ime, String prezime, String telefon, String email, Date datumRodjenja, Uloga uloga, Boolean aktivan, boolean daLiJeRegistrovan) {

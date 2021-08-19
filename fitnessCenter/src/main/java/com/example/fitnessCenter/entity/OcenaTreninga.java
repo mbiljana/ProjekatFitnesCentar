@@ -25,13 +25,52 @@ public class OcenaTreninga implements Serializable {
     private Long id;
     @Column
     private double ocena;
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Trening trening;
 
-    @ManyToMany(mappedBy = "ocene")
-    private Set<Clan> clanovi = new HashSet<>();
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private ListaTreninga trening;
+
+    /*@ManyToMany(mappedBy = "ocene")
+    private Set<Clan> clanovi = new HashSet<>(); */
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private ListaTreninga termin;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Clan clan;
 
     public OcenaTreninga() {
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public double getOcena() {
+        return ocena;
+    }
+
+    public void setOcena(double ocena) {
+        this.ocena = ocena;
+    }
+
+    public ListaTreninga getTrening() {
+        return trening;
+    }
+
+    public void setTrening(ListaTreninga trening) {
+        this.trening = trening;
+    }
+
+    public Clan getClan() {
+        return clan;
+    }
+
+    public void setClan(Clan clan) {
+        this.clan = clan;
+    }
 }

@@ -1,11 +1,16 @@
 package com.example.fitnessCenter.entity;
 
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter
+@Setter
 @Entity
 public class Clan extends Korisnik{
 
@@ -14,44 +19,40 @@ public class Clan extends Korisnik{
                 joinColumns = @JoinColumn(name="clan_id",referencedColumnName = "id"),
                 inverseJoinColumns = @JoinColumn(name = "trening_id",referencedColumnName = "id")
     )
-    private Set<Trening> treninzi = new HashSet<>();
+    private Set<ListaTreninga> odradjeniTreninzi = new HashSet<>();
 
     @ManyToMany
     @JoinTable(name = "prijavljeniTreninzi",
             joinColumns = @JoinColumn(name="clan_id",referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "trening_id",referencedColumnName = "id")
     )
-    private Set<Trening> prijavljeniTreninzi = new HashSet<>();
+    private Set<ListaTreninga> prijavljeniTreninzi = new HashSet<>();
 
-    @ManyToMany
+   /* @ManyToMany
     @JoinTable(name = "ocenjeniTreninzi",
             joinColumns = @JoinColumn(name="clan_id",referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "ocena_treninga_id",referencedColumnName = "id")
-    )
-    private Set<OcenaTreninga> ocene = new HashSet<>();
+    ) */
 
-    public Set<Trening> getTreninzi() {
-        return treninzi;
-    }
+    @OneToMany(mappedBy = "clan",fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
+    private Set<OcenaTreninga> ocenaTreninga = new HashSet<>();
 
-    public void setTreninzi(Set<Trening> treninzi) {
-        this.treninzi = treninzi;
-    }
 
-    public Set<Trening> getPrijavljeniTreninzi() {
+
+    public Set<ListaTreninga> getPrijavljeniTreninzi() {
         return prijavljeniTreninzi;
     }
 
-    public void setPrijavljeniTreninzi(Set<Trening> prijavljeniTreninzi) {
+    public void setPrijavljeniTreninzi(Set<ListaTreninga> prijavljeniTreninzi) {
         this.prijavljeniTreninzi = prijavljeniTreninzi;
     }
 
     public Set<OcenaTreninga> getOcene() {
-        return ocene;
+        return ocenaTreninga;
     }
 
     public void setOcene(Set<OcenaTreninga> ocene) {
-        this.ocene = ocene;
+        this.ocenaTreninga = ocene;
     }
 
 

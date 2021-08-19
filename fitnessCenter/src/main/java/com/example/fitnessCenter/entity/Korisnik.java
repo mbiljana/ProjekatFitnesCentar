@@ -1,9 +1,14 @@
 package com.example.fitnessCenter.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+@Getter
+@Setter
 @MappedSuperclass
 public class Korisnik implements Serializable {
 
@@ -27,13 +32,14 @@ public class Korisnik implements Serializable {
     @Column(nullable = false)
     private Uloga uloga;
     @Column(nullable = false)
-    private Boolean aktivan;
+    private boolean aktivan;
     @Column
     private boolean daLiJeRegistrovan;
 
     public Korisnik() {
     }
 
+    /*
     public void setId(Long id) {
         this.id = id;
     }
@@ -114,6 +120,8 @@ public class Korisnik implements Serializable {
         return aktivan;
     }
 
+     */
+
 
     public Korisnik(String korisnickoIme, String lozinka, String ime, String prezime, String telefon, String email, Date datumRodjenja, Uloga uloga) {
         this.korisnickoIme = korisnickoIme;
@@ -137,6 +145,19 @@ public class Korisnik implements Serializable {
         this.aktivan = aktivan;
     }
 
+    public Korisnik(String korisnickoIme, String lozinka, String ime, String prezime, String telefon, String email, Date datumRodjenja, Uloga uloga, boolean aktivan,boolean daLiJeRegistrovan) {
+        this.korisnickoIme = korisnickoIme;
+        this.lozinka = lozinka;
+        this.ime = ime;
+        this.prezime = prezime;
+        this.telefon = telefon;
+        this.email = email;
+        this.datumRodjenja = datumRodjenja;
+        this.uloga = uloga;
+        this.aktivan = aktivan;
+        this.daLiJeRegistrovan = daLiJeRegistrovan;
+    }
+
     public Korisnik(Long id, String korisnickoIme, String lozinka, String ime, String prezime, String telefon, String email, Date datumRodjenja, Uloga uloga, Boolean aktivan, boolean daLiJeRegistrovan) {
         this.id = id;
         this.korisnickoIme = korisnickoIme;
@@ -151,11 +172,11 @@ public class Korisnik implements Serializable {
         this.daLiJeRegistrovan = daLiJeRegistrovan;
     }
 
-    public boolean getDaLiJeRegistrovan() {
+    /*public boolean getDaLiJeRegistrovan() {
         return daLiJeRegistrovan;
     }
 
     public void setDaLiJeRegistrovan(boolean daLiJeRegistrovan) {
         this.daLiJeRegistrovan = daLiJeRegistrovan;
-    }
+    } */
 }

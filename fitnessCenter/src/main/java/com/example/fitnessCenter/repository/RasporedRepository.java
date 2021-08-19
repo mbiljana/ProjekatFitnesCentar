@@ -1,17 +1,18 @@
 package com.example.fitnessCenter.repository;
 
 
+import com.example.fitnessCenter.entity.ListaTreninga;
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.fitnessCenter.entity.RasporedTreninga;
 
 import java.util.Date;
 import java.util.List;
 
-public interface RasporedRepository extends JpaRepository<RasporedTreninga,Long>{
+public interface RasporedRepository extends JpaRepository<ListaTreninga,Long>{
 
 
-    List<RasporedTreninga> findByDatumPocetkaTreninga(Date pocetak);
-    List<RasporedTreninga> findByDatumKrajaTreninga(Date kraj);
-    List<RasporedTreninga> findByCena(double cena);
+    List<ListaTreninga> findByDatumPocetkaTreninga(Date pocetak);
+    List<ListaTreninga> findByDatumKrajaTreninga(Date kraj);
+    List<ListaTreninga> findByCena(double cena);
 
 }

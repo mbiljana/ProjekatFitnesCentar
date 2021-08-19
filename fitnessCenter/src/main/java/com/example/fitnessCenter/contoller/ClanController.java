@@ -2,6 +2,9 @@ package com.example.fitnessCenter.contoller;
 
 import com.example.fitnessCenter.entity.Clan;
 import com.example.fitnessCenter.entity.DTO.ClanDTO;
+import com.example.fitnessCenter.entity.DTO.KorisnikDTO;
+import com.example.fitnessCenter.entity.DTO.KreiranjeKorisnikaDTO;
+import com.example.fitnessCenter.entity.Korisnik;
 import com.example.fitnessCenter.repository.ClanRepository;
 import com.example.fitnessCenter.service.ClanService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,56 +19,79 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/clanovi")
 public class ClanController {
+    private final ClanService clanService;
+
     @Autowired
-    public ClanService clanService;
+    public ClanController(ClanService clanService) {this.clanService = clanService;}
+
+
     @Autowired
     public ClanRepository clanRepository;
 
     //prikaz svih clanova
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<ClanDTO>> getClanovi(){
+    public ResponseEntity<List<KorisnikDTO>> getUsers(){
         List<Clan> clanList = this.clanService.findAll();
-        List<ClanDTO> clanDTOS = new ArrayList<>();
+        List<KorisnikDTO> trazeniKorisnici = new ArrayList<KorisnikDTO>();
         for(Clan c : clanList){
-            ClanDTO clanDTO = new ClanDTO(c.getId(),c.getKorisnickoIme(),c.getLozinka(),c.getIme(),c.getPrezime(),c.getTelefon(),c.getEmail(),c.getDatumRodjenja(),c.getUloga(),c.getAktivan());
-            clanDTOS.add(clanDTO);
+            KorisnikDTO korisnik = new KorisnikDTO(c.getId(),c.getIme(),c.getPrezime(),c.getTelefon(),c.getEmail(),c.getDatumRodjenja(),c.getUloga());
+            trazeniKorisnici.add(korisnik);
         }
-        return new ResponseEntity<>(clanDTOS, HttpStatus.OK);
+        return new ResponseEntity<>(trazeniKorisnici, HttpStatus.OK);
     }
 
     //prikaz jednog clana
     @GetMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ClanDTO>getClan(@PathVariable(name="id") Long id){
+    public ResponseEntity<KorisnikDTO>getUser(@PathVariable("id") Long id){
         Clan clan = this.clanService.findOne(id);
-        ClanDTO clanDTO = new ClanDTO();
-        clanDTO.setIme(clan.getIme());
-        clanDTO.setDatumRodjenja(clan.getDatumRodjenja());
-        clanDTO.setEmail(clan.getEmail());
-        clanDTO.setAktivan(clan.getAktivan());
-        clanDTO.setKorisnickoIme(clan.getKorisnickoIme());
-        clanDTO.setLozinka(clan.getLozinka());
-        clanDTO.setPrezime(clan.getPrezime());
-        clanDTO.setTelefon(clan.getTelefon());
-        clanDTO.setUloga(clan.getUloga());
-        return new ResponseEntity<>(clanDTO,HttpStatus.OK);
+        KorisnikDTO trazeniKorisnik = new KorisnikDTO();
+        trazeniKorisnik.setId(clan.getId());
+        trazeniKorisnik.setIme(clan.getIme());
+        trazeniKorisnik.setDatumRodjenja(clan.getDatumRodjenja());
+        trazeniKorisnik.setEmail(clan.getEmail());
+        trazeniKorisnik.setPrezime(clan.getPrezime());
+        trazeniKorisnik.setTelefon(clan.getTelefon());
+        trazeniKorisnik.setUloga(clan.getUloga());
+        return new ResponseEntity<>(trazeniKorisnik,HttpStatus.OK);
     }
 
     //kreiranje novog clana
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ClanDTO>kreiranjeClana(@RequestBody ClanDTO clanDTO) throws Exception{
-        Clan postojeciClan = this.clanService.findByKorisnickoIme(clanDTO.getKorisnickoIme());
-        //clan vec postoji
-        if(postojeciClan != null){
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        }
-        //u drugom slucaju
-        Clan clan = new Clan(clanDTO.getKorisnickoIme(),clanDTO.getLozinka(),clanDTO.getIme(),clanDTO.getPrezime(),clanDTO.getTelefon(),clanDTO.getEmail(),clanDTO.getDatumRodjenja(),clanDTO.getUloga(),true,true);
-        clan.setAktivan(false);
-        clanRepository.save(clan);
-        ClanDTO clanDTO1 = new ClanDTO(clan.getId(),clan.getKorisnickoIme(),clan.getLozinka(),clan.getIme(),clan.getPrezime(),clan.getTelefon(),clan.getEmail(),clan.getDatumRodjenja(),clan.getUloga(),clan.getAktivan());
-        return new ResponseEntity<>(clanDTO1,HttpStatus.OK);
-
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<KreiranjeKorisnikaDTO>createUser(@RequestBody KreiranjeKorisnikaDTO kreiranjeKorisnikaDTO) throws Exception{
+       Clan clan = new Clan(kreiranjeKorisnikaDTO.getKorisnickoIme(),kreiranjeKorisnikaDTO.getLozinka(),kreiranjeKorisnikaDTO.getIme(),
+               kreiranjeKorisnikaDTO.getPrezime(),kreiranjeKorisnikaDTO.getTelefon(),kreiranjeKorisnikaDTO.getEmail(),
+               kreiranjeKorisnikaDTO.getDatumRodjenja(),kreiranjeKorisnikaDTO.getUloga());
+       Clan noviClan = this.clanService.save(clan);
+       KreiranjeKorisnikaDTO kreiranjeDTO = new KreiranjeKorisnikaDTO(noviClan.getId(),noviClan.getKorisnickoIme(),
+               noviClan.getLozinka(),noviClan.getIme(),noviClan.getPrezime(),noviClan.getDatumRodjenja(),noviClan.getEmail(),
+               noviClan.getTelefon(), noviClan.getUloga());
+       return new ResponseEntity<>(kreiranjeDTO,HttpStatus.CREATED);
     }
+
+    //izmena podataka clana
+    @PutMapping(value = "{/id}",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<KreiranjeKorisnikaDTO>updateUser(@PathVariable Long id,
+                                                           @RequestBody KreiranjeKorisnikaDTO kreiranjeKorisnikaDTO) throws Exception{
+        Clan korisnik  = new Clan(kreiranjeKorisnikaDTO.getKorisnickoIme(),kreiranjeKorisnikaDTO.getLozinka(),kreiranjeKorisnikaDTO.getIme(),
+                kreiranjeKorisnikaDTO.getPrezime(),kreiranjeKorisnikaDTO.getTelefon(),kreiranjeKorisnikaDTO.getEmail(),
+                kreiranjeKorisnikaDTO.getDatumRodjenja(),kreiranjeKorisnikaDTO.getUloga());
+        korisnik.setId(id);
+        Clan izmenjenKorisnik = clanService.update(korisnik);
+        KreiranjeKorisnikaDTO izmenjeniKorisnik = new KreiranjeKorisnikaDTO(izmenjenKorisnik.getId(),izmenjenKorisnik.getKorisnickoIme(),
+                izmenjenKorisnik.getLozinka(),izmenjenKorisnik.getIme(),izmenjenKorisnik.getPrezime(),izmenjenKorisnik.getDatumRodjenja(),
+                izmenjenKorisnik.getEmail(),izmenjenKorisnik.getTelefon(),izmenjenKorisnik.getUloga());
+        return new ResponseEntity<>(izmenjeniKorisnik,HttpStatus.OK);
+    }
+
+    //brisanje clana
+    @DeleteMapping(value = "{/id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id){
+        this.clanService.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+
+
 
 
 

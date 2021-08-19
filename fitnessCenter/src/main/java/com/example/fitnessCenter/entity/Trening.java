@@ -1,11 +1,14 @@
 package com.example.fitnessCenter.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-
+@Getter
 @Entity
 public class Trening implements Serializable {
     @Id
@@ -22,29 +25,35 @@ public class Trening implements Serializable {
     @Column(name = "TIPTRENINGA",nullable = false)
     private String tipTreninga;
     @Column(nullable = false)
-    private String trajanje;
+    private int trajanje;
 
-    @OneToMany(mappedBy = "trening", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private Set<OcenaTreninga> oceneTreninga = new HashSet<>();
+
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "trening2", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<ListaTreninga> terminiTreninga = new HashSet<>();
+
+    /* @OneToMany(mappedBy = "trening", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private Set<OcenaTreninga> oceneTreninga = new HashSet<>(); */
 
 
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Trener trener;
 
-    @ManyToMany(mappedBy = "treninzi")
+   /* @ManyToMany(mappedBy = "treninzi")
     private Set<Clan> odradiliTrening= new HashSet<>();
 
     @ManyToMany(mappedBy = "prijavljeniTreninzi")
     private Set<Clan> prijavljeniClanovi = new HashSet<>();
 
     @ManyToMany(mappedBy = "trening")
-    private Set<ListaTreninga> rasporediTreninga = new HashSet<>();
+    private Set<ListaTreninga> rasporediTreninga = new HashSet<>(); */
 
     public Trening() {
     }
 
-    public Trening(Long id, String naziv, String opis, String tipTreninga, String trajanje) {
+    public Trening(Long id, String naziv, String opis, String tipTreninga, int trajanje) {
         this.id = id;
         this.naziv = naziv;
         this.opis = opis;
@@ -52,8 +61,17 @@ public class Trening implements Serializable {
         this.trajanje = trajanje;
     }
 
-    public Trening(Long id, String naziv, String opis, String tipTreninga, String trajanje, Trener trener) {
+    public Trening(Long id, String naziv, String opis, String tipTreninga, int trajanje, Trener trener) {
         this.id = id;
+        this.naziv = naziv;
+        this.opis = opis;
+        this.tipTreninga = tipTreninga;
+        this.trajanje = trajanje;
+        this.trener = trener;
+    }
+
+    public Trening(String naziv, String opis, String tipTreninga, int trajanje, Trener trener) {
+
         this.naziv = naziv;
         this.opis = opis;
         this.tipTreninga = tipTreninga;
@@ -93,11 +111,11 @@ public class Trening implements Serializable {
         this.tipTreninga = tipTreninga;
     }
 
-    public String getTrajanje() {
+    public int getTrajanje() {
         return trajanje;
     }
 
-    public void setTrajanje(String trajanje) {
+    public void setTrajanje(int trajanje) {
         this.trajanje = trajanje;
     }
 

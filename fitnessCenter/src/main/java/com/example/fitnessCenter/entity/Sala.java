@@ -22,15 +22,21 @@ public class Sala implements Serializable {
     @Column(nullable = false)
     private int kapacitet;
 
-    @ManyToMany
+    /*@ManyToMany
     @JoinTable(name = "termini",
                 joinColumns = @JoinColumn(name = "sala_id",referencedColumnName = "id"),
                 inverseJoinColumns = @JoinColumn(name = "termin_id",referencedColumnName = "id")
     )
-    private Set<ListaTreninga>listaTreningaTerminska = new HashSet<>();
+    private Set<ListaTreninga>listaTreningaTerminska = new HashSet<>(); */
+
+   /* @ManyToOne(fetch = FetchType.EAGER)
+    private FitnessCentar fitnessCentar; */
+    @OneToMany(mappedBy = "sala", fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
+    private Set<ListaTreninga> listaTreninga = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
     private FitnessCentar fitnessCentar;
+
 
     public Sala() {
     }

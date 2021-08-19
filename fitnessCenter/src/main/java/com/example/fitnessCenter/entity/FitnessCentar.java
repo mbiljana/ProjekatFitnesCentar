@@ -1,5 +1,7 @@
 package com.example.fitnessCenter.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,12 +23,15 @@ public class FitnessCentar implements Serializable {
     @Column
     private String emailCentra;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "fitnessCentar",fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
     private Set<Trener> treneri = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "fitnessCentar",fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
     private Set<Sala> sale = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "fitnessCentar",fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
     private Set<ListaTreninga> rasporediTreninga = new HashSet<>();
 

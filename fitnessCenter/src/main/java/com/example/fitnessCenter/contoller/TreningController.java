@@ -3,6 +3,7 @@ package com.example.fitnessCenter.contoller;
 import com.example.fitnessCenter.entity.DTO.TreningDTO;
 import com.example.fitnessCenter.entity.TipTreninga;
 import com.example.fitnessCenter.entity.Trening;
+import com.example.fitnessCenter.service.TrenerService;
 import com.example.fitnessCenter.service.TreningService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,8 +18,15 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/pregledTreninga")
 public class TreningController {
+    private final TreningService treningService;
+    private final TrenerService trenerService;
+
     @Autowired
-    public TreningService treningService;
+    public TreningController(TreningService treningService, TrenerService trenerService)
+    {
+        this.treningService = treningService;
+        this.trenerService = trenerService;
+    }
 
     //metoda za dobavljanje svih treninga
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -39,7 +47,7 @@ public class TreningController {
 
     //prikaz jednog treninga
     @GetMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TreningDTO>getTrening(@PathVariable(name="id") Long id){
+    public ResponseEntity<TreningDTO>getTrening(@PathVariable("id") Long id){
         Trening trening = this.treningService.findOne(id);
         TreningDTO treningDTO = new TreningDTO();
         treningDTO.setNaziv(trening.getNaziv());
@@ -51,7 +59,8 @@ public class TreningController {
 
 
     //metoda za cuvanje novog treninga
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+   /*
+   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<TreningDTO> saveTrening(@RequestBody TreningDTO treningDTO) throws Exception{
         //kreira se objekat klase Trening a vrednosti astributa su iz DTO objekta
         Trening trening = new Trening(treningDTO.getId(),treningDTO.getNaziv(),treningDTO.getOpis(),treningDTO.getTip(),treningDTO.getTrajanje());
@@ -63,6 +72,9 @@ public class TreningController {
         //vraca se odgovor 201 created
         return new ResponseEntity<>(noviTreningDTO,HttpStatus.CREATED);
     }
+
+    */
+
 
     //metoda za brisanje postojeceg treninga
     @DeleteMapping(value = "/{id}")
@@ -111,12 +123,12 @@ public class TreningController {
     }
 
     //dobavljanje treninga po nazivu
-    @GetMapping(value="/naziv/{naziv}",produces = MediaType.APPLICATION_JSON_VALUE)
+    /* @GetMapping(value="/naziv/{naziv}",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<TreningDTO>getTreningByNaziv(@PathVariable(name = "naziv") String naziv) {
         Trening trening = treningService.findByNaziv(naziv);
         TreningDTO treningDTO = new TreningDTO(trening.getId(),trening.getNaziv(),trening.getOpis(),trening.getTipTreninga(),trening.getTrajanje());
         return new ResponseEntity<>(treningDTO,HttpStatus.OK);
-    }
+    } */
 
     //dobavljanje treninga po tipu
     @GetMapping(value="/tipTreninga/{tipTreninga}",produces = MediaType.APPLICATION_JSON_VALUE)
@@ -128,6 +140,33 @@ public class TreningController {
             treningDTOS.add(treningDTO);
         }
         return new ResponseEntity<>(treningDTOS,HttpStatus.OK);
+    }
+
+
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<TreningDTO> createTraining(@RequestBody TreningDTO tDTO) throws Exception {
+        Trening trening = new Trening(tDTO.getNaziv(), tDTO.getOpis(), tDTO.getTip(),tDTO.getTrajanje(), tDTO.getTrener());
+        Trening noviTrening = this.treningService.save(trening);
+        TreningDTO treningDTO = new TreningDTO(noviTrening.getId(), noviTrening.getNaziv(), noviTrening.getOpis(),
+                noviTrening.getTipTreninga(), noviTrening.getTrajanje(), noviTrening.getTrener());
+        return new ResponseEntity<>(treningDTO, HttpStatus.CREATED);
+
+    }
+
+
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<TreningDTO> updateTraining(@PathVariable Long id,
+                                                     @RequestBody TreningDTO treningDTO) throws Exception {
+        Trening trening = new Trening(treningDTO.getNaziv(), treningDTO.getOpis(), treningDTO.getTip(),
+                treningDTO.getTrajanje(), treningDTO.getTrener());
+        trening.setId(id);
+        Trening izmenjenTrening = treningService.update(trening);
+        TreningDTO azuriranTrening = new TreningDTO(izmenjenTrening.getId(), izmenjenTrening.getNaziv(), izmenjenTrening.getOpis(),
+                izmenjenTrening.getTipTreninga(), izmenjenTrening.getTrajanje(), izmenjenTrening.getTrener());
+        return new ResponseEntity<>(azuriranTrening, HttpStatus.OK);
+
     }
 
 

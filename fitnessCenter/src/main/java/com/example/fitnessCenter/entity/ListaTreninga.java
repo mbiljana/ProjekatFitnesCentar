@@ -1,12 +1,18 @@
 package com.example.fitnessCenter.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter
+@Setter
 @Entity
 public class ListaTreninga implements Serializable {
     @Id
@@ -22,15 +28,28 @@ public class ListaTreninga implements Serializable {
     @Column
     private Date datumKrajaTreninga;
 
-    @ManyToMany(mappedBy = "listaTreningaTerminska")
-    private Set<Sala> sale = new HashSet<>();
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Sala sala;
 
-    @ManyToMany
+    @JsonIgnore
+    @OneToMany(mappedBy = "termin" ,fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
+    private Set<OcenaTreninga> ocenaTreningas = new HashSet<>();
+
+    @ManyToMany(mappedBy = "prijavljeniTreninzi")
+    private Set<Clan> prijavljeniClanovi = new HashSet<>();
+
+    @ManyToMany(mappedBy = "odradjeniTreninzi")
+    private Set<Clan> clanoviOdradiliTrening = new HashSet<>();
+
+
+
+
+   /* @ManyToMany
     @JoinTable(name = "treninzi",
             joinColumns = @JoinColumn(name = "raspored_treninga_id",referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "trening_id",referencedColumnName = "id")
     )
-    private Set<Trening> trening = new HashSet<>();
+    private Set<Trening> trening = new HashSet<>(); */
 
     public ListaTreninga() {
     }
@@ -38,14 +57,31 @@ public class ListaTreninga implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     private FitnessCentar fitnessCentar;
 
-    public ListaTreninga(Long id, int brojPrijavljenih, double cena, Date datumPocetkaTreninga, Date datumKrajaTreninga, Set<Sala> sale, Set<Trening> trening, FitnessCentar fitnessCentar) {
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Trening trening2;
+
+
+
+
+
+
+    public ListaTreninga(Long id, int brojPrijavljenih, double cena, Date datumPocetkaTreninga, Date datumKrajaTreninga, Sala sala, Trening trening, FitnessCentar fitnessCentar) {
         this.id = id;
         this.brojPrijavljenih = brojPrijavljenih;
         this.cena = cena;
         this.datumPocetkaTreninga = datumPocetkaTreninga;
         this.datumKrajaTreninga = datumKrajaTreninga;
-        this.sale = sale;
-        this.trening = trening;
+        this.sala = sala;
+        this.trening2 = trening;
+        this.fitnessCentar = fitnessCentar;
+    }
+
+    public ListaTreninga(double cena, Date datumPocetkaTreninga,Trening trening, FitnessCentar fitnessCentar) {
+
+        this.cena = cena;
+        this.datumPocetkaTreninga = datumPocetkaTreninga;
+
+        this.trening2 = trening;
         this.fitnessCentar = fitnessCentar;
     }
 
@@ -97,20 +133,20 @@ public class ListaTreninga implements Serializable {
         this.datumKrajaTreninga = datumKrajaTreninga;
     }
 
-    public Set<Sala> getSale() {
-        return sale;
+    public Sala getSala() {
+        return sala;
     }
 
-    public void setSale(Set<Sala> sale) {
-        this.sale = sale;
+    public void setSala(Sala sala) {
+        this.sala = sala;
     }
 
-    public Set<Trening> getTrening() {
-        return trening;
+    public Trening getTrening() {
+        return trening2;
     }
 
-    public void setTrening(Set<Trening> trening) {
-        this.trening = trening;
+    public void setTrening(Trening trening2) {
+        this.trening2 = trening2;
     }
 
     public FitnessCentar getFitnessCentar() {

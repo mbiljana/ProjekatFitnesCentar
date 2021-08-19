@@ -10,10 +10,10 @@ public class TreningDTO implements Serializable {
     private String naziv;
     private String opis;
     private String tip;
-    private String trajanje;
+    private int trajanje;
     private Trener trener;
 
-    public TreningDTO(Long id, String naziv, String opis, String tip, String trajanje) {
+    public TreningDTO(Long id, String naziv, String opis, String tip, int trajanje) {
         this.id = id;
         this.naziv = naziv;
         this.opis = opis;
@@ -56,11 +56,11 @@ public class TreningDTO implements Serializable {
         this.tip = tip;
     }
 
-    public String getTrajanje() {
+    public int getTrajanje() {
         return trajanje;
     }
 
-    public void setTrajanje(String trajanje) {
+    public void setTrajanje(int trajanje) {
         this.trajanje = trajanje;
     }
 
@@ -72,14 +72,14 @@ public class TreningDTO implements Serializable {
         this.trener = trener;
     }
 
-    public TreningDTO(String naziv, String opis, String tip, String trajanje) {
+    public TreningDTO(String naziv, String opis, String tip, int trajanje) {
         this.naziv = naziv;
         this.opis = opis;
         this.tip = tip;
         this.trajanje = trajanje;
     }
 
-    public TreningDTO(Long id, String naziv, String opis, String tip, String trajanje, Trener trener) {
+    public TreningDTO(Long id, String naziv, String opis, String tip, int trajanje, Trener trener) {
         this.id = id;
         this.naziv = naziv;
         this.opis = opis;

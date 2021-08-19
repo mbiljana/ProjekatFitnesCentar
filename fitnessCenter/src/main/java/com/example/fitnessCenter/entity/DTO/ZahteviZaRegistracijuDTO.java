@@ -4,14 +4,13 @@ import com.example.fitnessCenter.entity.Uloga;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.Serializable;
 import java.util.Date;
 
 @Getter
 @Setter
-public class PrijavaKorisnikaDTO implements Serializable {
 
-    private Long id;
+public class ZahteviZaRegistracijuDTO {
+
     private String korisnickoIme;
     private String ime;
     private String prezime;
@@ -19,14 +18,13 @@ public class PrijavaKorisnikaDTO implements Serializable {
     private String telefon;
     private String email;
     private Date datumRodjenja;
-    private boolean aktivan;
+
     private Uloga uloga;
 
-    public PrijavaKorisnikaDTO() {
+    public ZahteviZaRegistracijuDTO() {
     }
 
-    public PrijavaKorisnikaDTO(Long id, String korisnickoIme, String ime, String prezime, String lozinka, String telefon, String email, Date datumRodjenja, boolean aktivan, Uloga uloga) {
-        this.id = id;
+    public ZahteviZaRegistracijuDTO(String korisnickoIme, String ime, String prezime, String lozinka, String telefon, String email, Date datumRodjenja, Uloga uloga) {
         this.korisnickoIme = korisnickoIme;
         this.ime = ime;
         this.prezime = prezime;
@@ -34,7 +32,6 @@ public class PrijavaKorisnikaDTO implements Serializable {
         this.telefon = telefon;
         this.email = email;
         this.datumRodjenja = datumRodjenja;
-        this.aktivan = aktivan;
         this.uloga = uloga;
     }
 }

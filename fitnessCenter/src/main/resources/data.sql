@@ -16,17 +16,17 @@ insert into TRENER(id,aktivan,da_li_je_registrovan,DATUMRODJENJA,email,ime,koris
 values (21,'true','true','1994-02-03','trener2@gmail.com','Milena','milenad ','md','Dragic','062545875',1);
 
 insert into TRENING(id,naziv,opis,tiptreninga,trajanje)
-values (30,'Kardio','Kardio trening za zene','KARDIO','30 min');
+values (30,'Kardio','Kardio trening za zene','KARDIO',30);
 insert into TRENING(id,naziv,opis,tiptreninga,trajanje)
-values (31,'Joga','Joga za zene','JOGA','60 min');
+values (31,'Joga','Joga za zene','JOGA',60);
 insert into TRENING(id,naziv,opis,tiptreninga,trajanje)
-values (32,'Pilates','Pilates lagani trening','PILATES','70 min');
+values (32,'Pilates','Pilates lagani trening','PILATES',70);
 insert into TRENING(id,naziv,opis,tiptreninga,trajanje)
-values (33,'Crossfit','Tezak trening','CROSSFIT','70 min');
+values (33,'Crossfit','Tezak trening','CROSSFIT',70);
 insert into TRENING(id,naziv,opis,tiptreninga,trajanje)
-values (34,'Crossfit','Lagani crossfit','CROSSFIT','30 min');
+values (34,'Crossfit','Lagani crossfit','CROSSFIT',30);
 insert into TRENING(id,naziv,opis,tiptreninga,trajanje)
-values (35,'Joga','Jutarnja joga','JOGA','30 min');
+values (35,'Joga','Jutarnja joga','JOGA',30);
 
 insert into FITNESS_CENTAR(id,naziv_centra,adresa_centra,broj_telefona_centrale,email_centra)
 values (101,'BeFit','Vojvodjanskih Brigada 10','0698574584','befit1@yahoo.com');
