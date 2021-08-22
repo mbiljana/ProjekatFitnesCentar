@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    $("#loginKorisnikForm").submit(function(event) {
+    $("#formaLogovanjeKorisnika").submit(function(event) {
 
         event.preventDefault();
         var korisnickoIme = $("#korisnickoIme").val().trim();
@@ -13,12 +13,14 @@ $(document).ready(function(){
         if(korisnickoIme != "" && lozinka != "") {
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8090/api/korisnik/prijava",
+                url: "http://localhost:8090/api/korisnik/login",
                 dataType: "json",
                 contentType: "application/json",
                 data: obj,
                 success: function (data) {
+
                     console.log("SUCCESS : ", data);
+
                     localStorage.setItem('id', data.id);
                     localStorage.setItem('ime', data.ime);
                     localStorage.setItem('prezime', data.prezime);
@@ -31,11 +33,11 @@ $(document).ready(function(){
                     localStorage.setItem('aktivan', data.aktivan);
                     localStorage.setItem('lozinka', data.lozinka);
 
-                    window.location.href = "index.html";
+                    window.location.href = "home.html";
                 },
                 error: function (data) {
                     console.log("ERROR " + JSON.stringify(data));
-                    alert("Ovaj nalog nije aktivan");
+                    alert("Nalog nije aktivan, proverite unos ili se obratite adminu");
                 }
             });
 
@@ -44,3 +46,4 @@ $(document).ready(function(){
 
     });
 });
+
