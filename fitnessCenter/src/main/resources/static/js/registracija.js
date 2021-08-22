@@ -21,10 +21,9 @@ $(document).ready(function(){
             "uloga" : 2
         });
 
-// alert(newKorisnik);
         $.ajax({
             type: "POST",
-            url: "http://localhost:8090/api/korisnik/registrujClana",
+            url: "http://localhost:8181/api/korisnik/registrujClana",
             dataType: "json",
             contentType: "application/json",
             data: obj,
@@ -43,20 +42,20 @@ $(document).ready(function(){
     });
     $.ajax({
         type: "GET",
-        url: "http://localhost:8090/api/korisnik/zahteviZaRegistracijuClana",
+        url: "http://localhost:8181/api/korisnik/zahteviZaRegistracijuClana",
         dataType: "json",
-        success: function (response) {                              // ova f-ja se izvršava posle uspešnog zahteva
-            console.log("SUCCESS:\n", response);                    // ispisujemo u konzoli povratnu vrednost radi provere
+        success: function (response) {
+            console.log("SUCCESS:\n", response);
 
-            for (let trener of response) {                        // prolazimo kroz listu svih zaposlenih
-                let row = "<tr>";                                   // kreiramo red za tabelu
-                row += "<td>" + trener.ime + "</td>";       // ubacujemo podatke jednog zaposlenog u polja
+            for (let trener of response) {
+                let row = "<tr>";
+                row += "<td>" + trener.ime + "</td>";
                 row += "<td>" + trener.prezime + "</td>";
                 row += "<td>" + trener.email + "</td>";
                 row += "<td>" + trener.telefon + "</td>";
-                row += "</tr>";                                     // završavamo kreiranje reda
+                row += "</tr>";
 
-                $('#zahteviZaRegistracijuClana').append(row);                        // ubacujemo kreirani red u tabelu čiji je id = employees
+                $('#zahteviZaRegistracijuClana').append(row);
             }
         },
         error: function (response) {

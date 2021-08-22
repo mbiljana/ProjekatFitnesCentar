@@ -13,7 +13,7 @@ $(document).ready(function(){
         if(korisnickoIme != "" && lozinka != "") {
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8090/api/korisnik/login",
+                url: "http://localhost:8181/api/korisnik/login",
                 dataType: "json",
                 contentType: "application/json",
                 data: obj,

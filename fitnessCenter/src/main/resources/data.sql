@@ -1,5 +1,5 @@
 insert into ADMINISTRATOR(id,aktivan,da_li_je_registrovan,DATUMRODJENJA,email,ime,korisnickoime,lozinka,prezime,telefon,uloga)
-values (1,'true','true','1999-05-02','mbiljana99@gmail.com','Biljana','mbiljana','biljana1','Marinkov','2554554',0);
+values (7,'true','true','1999-05-02','mbiljana99@gmail.com','Biljana','mbiljana','biljana1','Marinkov','2554554',0);
 insert into ADMINISTRATOR(id,aktivan,da_li_je_registrovan,DATUMRODJENJA,email,ime,korisnickoime,lozinka,prezime,telefon,uloga)
 values (2,'true','true','1997-01-01','markoal@gmail.com','Marko','almarko','123456','Aleksic','065487577',0);
 insert into ADMINISTRATOR(id,aktivan,da_li_je_registrovan,DATUMRODJENJA,email,ime,korisnickoime,lozinka,prezime,telefon,uloga)

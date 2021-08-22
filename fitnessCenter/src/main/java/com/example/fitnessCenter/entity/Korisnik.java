@@ -15,9 +15,9 @@ public class Korisnik implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY) //inkrementalno generisanje kljuceva prilikom cuvanja u bazi
     private Long id;
-    @Column(name = "KORISNICKOIME",nullable = false)
+    @Column(name = "KORISNICKOIME",unique = true)
     private String korisnickoIme;
-    @Column(nullable = false)
+    @Column //(nullable = false)
     private String lozinka;
     @Column
     private String ime;
@@ -27,11 +27,11 @@ public class Korisnik implements Serializable {
     private String telefon;
     @Column
     private String email;
-    @Column(name = "DATUMRODJENJA")
+    @Column (name = "DATUMRODJENJA")
     private Date datumRodjenja;
-    @Column(nullable = false)
+    @Column//(nullable = false)
     private Uloga uloga;
-    @Column(nullable = false)
+    @Column//(nullable = false)
     private boolean aktivan;
     @Column
     private boolean daLiJeRegistrovan;
