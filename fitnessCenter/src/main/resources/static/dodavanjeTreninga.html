@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodavanje novog treninga</title>
+
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/dodavanjeTreninga.js"></script>
+
+
+  <link rel="stylesheet" href="css/table.css"></link>
+</head>
+<body>
+
+
+<div class="header">
+  <header class="w3-container w3-center w3-padding-48 w3-white">
+    <h1 class="w3-xxxlarge"><b>FITNESS CENTER</b></h1>
+    <h6>Dobrodošli na stranicu fitness centra <span class="w3-tag"> BE FIT</span></h6>
+  </header>
+</div>
+
+
+<div id="sviTreninzi">
+  <h1>Treninzi</h1>
+  <br><br>
+  <div class="container">
+    <table id="treninzi">
+      <tr>
+        <th>Naziv</th>
+        <th>Opis</th>
+        <th>Tip</th>
+        <th>Trajanje</th>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="container">
+  <h1 class="w3-xlarge"><b>Kreiranje novog termina treninga</b></h1>
+  <div class="modal-dialog text-center">
+    <div class="col-sm-12">
+      <div class="modal-content">
+        <h2 class="text-center">Popunite formu da biste kreirali novi termin</h2>
+
+
+        <div class="form-group1">
+          <h5 for="cena">Cena:</h5>
+          <input id="cena" name="cena" type="text" class="registar" >
+        </div>
+
+        <div class="form-group1">
+          <h5 for="datumPocetkaTreninga">Datum pocetka:</h5>
+          <input id="datumPocetkaTreninga"  name="datumPocetkaTreninga" type="datetime-local"  class="registar datum" >
+        </div>
+        <div>
+          <button id="kreiraj" >Kreiraj</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

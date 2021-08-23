@@ -10,10 +10,10 @@ values (10,'true','true','1994-02-03','marijana@gmail.com','Marijana','pmarijana
 insert into CLAN(id,aktivan,da_li_je_registrovan,DATUMRODJENJA,email,ime,korisnickoime,lozinka,prezime,telefon,uloga)
 values (11,'true','true','1994-02-03','biljana@gmail.com','Biljana','mbiljna','bbbb','Marinkov','062545875',2);
 
-insert into TRENER(id,aktivan,da_li_je_registrovan,DATUMRODJENJA,email,ime,korisnickoime,lozinka,prezime,telefon,uloga)
-values (20,'true','true','1994-02-03','trener1@gmail.com','Aleksa','aleksam','alex','Mirkov','062545875',1);
-insert into TRENER(id,aktivan,da_li_je_registrovan,DATUMRODJENJA,email,ime,korisnickoime,lozinka,prezime,telefon,uloga)
-values (21,'true','true','1994-02-03','trener2@gmail.com','Milena','milenad ','md','Dragic','062545875',1);
+insert into TRENER(id,aktivan,da_li_je_registrovan,DATUMRODJENJA,email,ime,korisnickoime,lozinka,prezime,telefon,uloga,prosecna_ocena)
+values (20,'true','true','1994-02-03','trener1@gmail.com','Aleksa','aleksam','alex','Mirkov','062545875',1,5);
+insert into TRENER(id,aktivan,da_li_je_registrovan,DATUMRODJENJA,email,ime,korisnickoime,lozinka,prezime,telefon,uloga,prosecna_ocena)
+values (21,'true','true','1994-02-03','trener2@gmail.com','Milena','milenad ','md','Dragic','062545875',1,3);
 
 insert into TRENING(id,naziv,opis,tiptreninga,trajanje)
 values (30,'Kardio','Kardio trening za zene','KARDIO',30);

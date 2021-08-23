@@ -43,7 +43,7 @@ public class TreningController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<TreningDTO>> getTreninzi() {
         List<Trening> treninzi = this.treningService.findAll();
-        List<TreningDTO> trazeniTreninzi = new ArrayList<TreningDTO>();
+        List<TreningDTO> trazeniTreninzi = new ArrayList<>();
         for(Trening t : treninzi) {
             TreningDTO trening = new TreningDTO(t.getId(), t.getNaziv(), t.getOpis(), t.getTipTreninga(), t.getTrajanje(),t.getTrener());
             trazeniTreninzi.add(trening);

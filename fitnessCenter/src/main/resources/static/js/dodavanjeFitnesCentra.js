@@ -1,3 +1,33 @@
+$(document).on("submit","form",function(event){
+    event.preventDefault();
+
+    var nazivCentra=$("#nazivCentra").val();
+    var adresaCentra=$("#adresaCentra").val();
+    var emailCentra=$("#emailCentra").val();
+    var brojTelefonaCentrale=$("#brojTelefonaCentrale").val();
+    var newFitnesCentarJSON=formToJSON(nazivCentra,adresaCentra,emailCentra,brojTelefonaCentrale);
+    $.ajax({
+        type:"POST",
+        url:"http://localhost:8181/api/sviFitnesCentri",
+        dataType:"json",
+        contentType:"application/json",
+        data: newFitnesCentarJSON,
+        success:function(){
+            alert("Uspesno ste dodali fitnes centar "+naziv);
+            window.location.href="sviFitnesCentri.html";
+        }
+    });
+});
+function formToJSON(nazivCentra,adresaCentra,emailCentra,brojTelefonaCentrale){
+    return JSON.stringify({
+        "nazivCentra":nazivCentra,
+        "adresaCentra":adresaCentra,
+        "emailCentra":emailCentra,
+        "brojTelefonaCentrale":brojTelefonaCentrale
+    });
+}
+
+/*
 $(document).ready(function(){
 
     $("#sviFitnesCentri").submit(function(event) {
@@ -36,3 +66,5 @@ $(document).ready(function(){
     });
 
 });
+
+ */

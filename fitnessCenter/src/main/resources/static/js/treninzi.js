@@ -3,6 +3,35 @@ $(document).ready(function () {
         type: "GET",
         url: "http://localhost:8181/api/pregledTreninga",
         dataType: "json",
+        success: function (data) {                              // ova f-ja se izvršava posle uspešnog zahteva
+            console.log("SUCCESS:\n", data);                    // ispisujemo u konzoli povratnu vrednost radi provere
+
+            for (i = 0; i < data.length; i++) {
+                var row = "<tr data-id=" + data[i]['id'] + ">";                                  // kreiramo red za tabelu
+                row += "<td>" + data[i]['naziv'] + "</td>";       // ubacujemo podatke jednog zaposlenog u polja
+                row += "<td>" + data[i]['opis'] + "</td>";
+                row += "<td>" + data[i]['tip'] + "</td>";
+                row += "<td>" + data[i]['trajanje'] + "</td>";
+                row += "</tr>";                                     // završavamo kreiranje reda
+
+                $('#pregledTreninga').append(row);                        // ubacujemo kreirani red u tabelu čiji je id = employees
+            }
+        },
+        error: function (response) {
+            alert("Dogodila se greska, pogledaj konzolu");
+            console.log("ERROR : ", data);
+
+        }
+
+    });
+});
+
+
+    /*
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8181/api/pregledTreninga",
+        dataType: "json",
         success: function (response) {
             console.log("SUCCESS:\n", response);
 
@@ -18,9 +47,11 @@ $(document).ready(function () {
             }
         },
         error: function (response) {
+            alert("Dogodila se greska, pogledaj konzolu");
+            console.log("ERROR : ", data);
         }
     });
-});
+}); */
 
 $(document).on('click','#sortNaziv',function(){
     $.ajax({
