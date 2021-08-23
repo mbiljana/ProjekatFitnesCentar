@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $.ajax({
         type: "GET",
-        url: "http://localhost:8090/api/pregledTreninga",
+        url: "http://localhost:8181/api/pregledTreninga",
         dataType: "json",
         success: function (response) {
             console.log("SUCCESS:\n", response);
@@ -25,7 +25,7 @@ $(document).ready(function () {
 $(document).on('click','#sortNaziv',function(){
     $.ajax({
         type:"GET",
-        url:"http://localhost:8090/api/pregledTreninga/sortNaziv",
+        url:"http://localhost:8181/api/pregledTreninga/sortNaziv",
         dataType:"json",
         success:function(data){
 
@@ -50,7 +50,7 @@ $(document).on('click','#sortNaziv',function(){
 $(document).on('click','#sortTipTreninga',function() {
     $.ajax({
         type: "GET",
-        url: "http://localhost:8090/api/pregledTreninga/sortTipTreninga",
+        url: "http://localhost:8181/api/pregledTreninga/sortTipTreninga",
         dataType: "json",
         success: function (data) {
 
@@ -74,7 +74,7 @@ $(document).on('click','#sortTipTreninga',function() {
     $(document).on('click', '#sortTranjanje', function () {
         $.ajax({
             type: "GET",
-            url: "http://localhost:8090/api/pregledTreninga/sortTrajanje",
+            url: "http://localhost:8181/api/pregledTreninga/sortTrajanje",
             dataType: "json",
             success: function (data) {
 
@@ -102,7 +102,7 @@ $(document).on('click','#sortTipTreninga',function() {
             var naziv = $("#nazivTr").val();
             $.ajax({
                 type: "GET",
-                url: "http://localhost:8090/api/pregledTreninga/naziv/" + naziv,
+                url: "http://localhost:8181/api/pregledTreninga/naziv/" + naziv,
                 dataType: "json",
                 success: function (data) {
                     console.log("SUCCESS: ", data);
@@ -128,7 +128,7 @@ $(document).on('click','#sortTipTreninga',function() {
             var tip = $("#tipTr").val();
             $.ajax({
                 type: "GET",
-                url: "http://localhost:8090/api/pregledTreninga/tipTreninga/" + tip,
+                url: "http://localhost:8181/api/pregledTreninga/tipTreninga/" + tip,
                 dataType: "json",
                 success: function (data) {
                     console.log("SUCCESS: ", data);

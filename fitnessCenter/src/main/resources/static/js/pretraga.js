@@ -37,7 +37,7 @@ $(document).ready(function(){
                     row += "<td>" + data[i]['trajanje'] + "</td>";
                     row += "<td>" + (data[i]['datumPocetka'].split("T"))[0] + "</td>";
 
-                    row += "<td>" + data[i]['tipTreninga'] + "</td>";
+                    row += "<td>" + data[i]['tip'] + "</td>";
 
                     row += "<td>" + data[i]['nazivSale'] + "</td>";
 

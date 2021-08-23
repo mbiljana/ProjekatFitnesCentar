@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/pregledTreninga")
+@RequestMapping(value ="/api/pregledTreninga")
 public class TreningController {
     private final TreningService treningService;
     private final TrenerService trenerService;
@@ -29,20 +29,26 @@ public class TreningController {
     }
 
     //metoda za dobavljanje svih treninga
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+  /*  @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<TreningDTO>> getTreninzi(){
-        //poziva se metoda u servisu za dobavljanje svih zaposlenih
         List<Trening> treningList = this.treningService.findAll();
-        //kreira se lista DTO objekata koja se vraca kao odgovor na zahtev
         List<TreningDTO> treningDTOS = new ArrayList<>();
         for(Trening trening : treningList){
-            //kreira se treningDTO za svaki trening koga je vratila metoda iz servisa
-            //ubacuje se u listu treningDTOS
             TreningDTO treningDTO = new TreningDTO(trening.getId(),trening.getNaziv(),trening.getOpis(),trening.getTipTreninga(),trening.getTrajanje(),trening.getTrener());
             treningDTOS.add(treningDTO);
         }
-        //vraca se odgovor 200 OK
         return new ResponseEntity<>(treningDTOS, HttpStatus.OK);
+    } */
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<TreningDTO>> getTreninzi() {
+        List<Trening> treninzi = this.treningService.findAll();
+        List<TreningDTO> trazeniTreninzi = new ArrayList<TreningDTO>();
+        for(Trening t : treninzi) {
+            TreningDTO trening = new TreningDTO(t.getId(), t.getNaziv(), t.getOpis(), t.getTipTreninga(), t.getTrajanje(),t.getTrener());
+            trazeniTreninzi.add(trening);
+        }
+        return new ResponseEntity<>(trazeniTreninzi, HttpStatus.OK);
     }
 
     //prikaz jednog treninga

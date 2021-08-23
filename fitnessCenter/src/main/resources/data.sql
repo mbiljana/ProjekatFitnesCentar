@@ -29,7 +29,10 @@ insert into TRENING(id,naziv,opis,tiptreninga,trajanje)
 values (35,'Joga','Jutarnja joga','JOGA',30);
 
 insert into FITNESS_CENTAR(id,naziv_centra,adresa_centra,broj_telefona_centrale,email_centra)
-values (101,'BeFit','Vojvodjanskih Brigada 10','0698574584','befit1@yahoo.com');
-
+values (101,'BeFit1','Vojvodjanskih Brigada 10','0698574584','befit1@yahoo.com');
+insert into FITNESS_CENTAR(id,naziv_centra,adresa_centra,broj_telefona_centrale,email_centra)
+values (102,'BeFit2','Marsala Tita 32','03254685','befit2@yahoo.com');
+insert into FITNESS_CENTAR(id,naziv_centra,adresa_centra,broj_telefona_centrale,email_centra)
+values (103,'BeFit3','Borisa Kidrica 58','02145789','befit3@yahoo.com');
 
 

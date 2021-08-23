@@ -29,7 +29,7 @@ $(document).ready(function(){
                     localStorage.setItem('uloga', data.uloga);
                     localStorage.setItem('email', data.email);
                     localStorage.setItem('datumRodjenja', data.datumRodjenja);
-                    localStorage.setItem('korisnickoIme', data.korisnickoIme);
+                   // localStorage.setItem('korisnickoIme', data.korisnickoIme);
                     localStorage.setItem('aktivan', data.aktivan);
                     localStorage.setItem('lozinka', data.lozinka);
 
