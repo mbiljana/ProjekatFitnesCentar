@@ -13,7 +13,7 @@ $(document).on("submit","form",function(event){
         contentType:"application/json",
         data: newFitnesCentarJSON,
         success:function(){
-            alert("Uspesno ste dodali fitnes centar "+naziv);
+            alert("Uspesno ste dodali fitnes centar "+nazivCentra);
             window.location.href="sviFitnesCentri.html";
         }
     });
