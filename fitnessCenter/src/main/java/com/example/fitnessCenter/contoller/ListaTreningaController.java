@@ -248,23 +248,19 @@ public class ListaTreningaController {
     }
 
 
+
+
     @PostMapping(value = ("/izmena"),
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> izmena(@RequestBody IzmenaTerminaDTO kDTO) throws Exception {
-        Trener trener =  trenerService.findOne(kDTO.getIdKorisnika());
+    public ResponseEntity<TerminIzmenaDTO> izmena(@RequestBody IzmenaTerminaDTO kDTO) throws Exception {
+        ListaTreninga listaTreninga = rasporedTreningaService.findOne(kDTO.getIdTermina());
+        listaTreninga.setCena(kDTO.getCena());
+        listaTreninga.setDatumPocetkaTreninga(kDTO.getDatumPocetka());
+        rasporedTreningaService.azuriranje(listaTreninga);
+        TerminIzmenaDTO tDTO = new TerminIzmenaDTO(listaTreninga.getCena(),listaTreninga.getDatumPocetkaTreninga());
 
-        for(Trening t : trener.getListaTreninga()){
-            for(ListaTreninga ter : t.getTerminiTreninga()) {
-                if(ter.getId() == kDTO.getIdTermina()) {
-                    ter.setCena(kDTO.getCena());
-                    ter.setDatumPocetkaTreninga(kDTO.getDatumPocetka());
-                    rasporedTreningaService.update(ter);
-                }
-            }
-        }
-
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(tDTO,HttpStatus.OK);
 
     }
 

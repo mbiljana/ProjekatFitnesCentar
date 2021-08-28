@@ -23,7 +23,13 @@ public class RasporedTreningaServiceImpl implements RasporedTreningaService {
     public ListaTreninga save(ListaTreninga termin) throws Exception {
         if(termin.getId() != null) {
             throw new Exception("ID must be null!");
-        }
+       }
+        ListaTreninga noviTermin = this.rasporedRepository.save(termin);
+        return noviTermin;
+    }
+    @Override
+    public ListaTreninga azuriranje(ListaTreninga termin)  {
+
         ListaTreninga noviTermin = this.rasporedRepository.save(termin);
         return noviTermin;
     }

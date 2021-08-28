@@ -40,13 +40,33 @@ values (301,'S1',30,103);
 
 insert into LISTA_TRENINGA(id,broj_prijavljenih,cena,datum_kraja_treninga,datum_pocetka_treninga,fitness_centar_id,sala_id,trening2_id)
 values (801,30,500,'2021-02-03','2021-02-03',103,301,35);
+insert into LISTA_TRENINGA(id,broj_prijavljenih,cena,datum_kraja_treninga,datum_pocetka_treninga,fitness_centar_id,sala_id,trening2_id)
+values (802,70,200,'2021-03-03','2021-03-03',103,301,34);
+
+insert into OCENA_TRENINGA(id,ocena,clan_id,termin_id,trening_id)
+values(555,5,10,801,801);
+insert into OCENA_TRENINGA(id,ocena,clan_id,termin_id,trening_id)
+values(556,5,11,802,802);
+
+
 
 
 
 insert into ODRADJENI_TRENINZI(clan_id,trening_id)
 values (10,801);
+insert into ODRADJENI_TRENINZI(clan_id,trening_id)
+values (10,802);
+insert into ODRADJENI_TRENINZI(clan_id,trening_id)
+values (11,801);
+insert into ODRADJENI_TRENINZI(clan_id,trening_id)
+values (11,802);
 
 insert into PRIJAVLJENI_TRENINZI(clan_id,trening_id)
 values (10,801);
+insert into PRIJAVLJENI_TRENINZI(clan_id,trening_id)
+values (11,801);
+insert into PRIJAVLJENI_TRENINZI(clan_id,trening_id)
+values (10,802);
+
 
 

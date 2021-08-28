@@ -52,8 +52,8 @@ $(document).ready(function(){
     $("#izmeni").click(function() {
         var korisnik = localStorage.getItem('id');
         var termin = selektovanRed;
-        var datumPocetka = $("#datumPocetka").val();
         var cena = $("#cena").val();
+        var datumPocetka = $("#datumPocetka").val();
         var obj = JSON.stringify({
             "idKorisnika" : korisnik,
             "idTermina" : termin,
