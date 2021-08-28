@@ -5,7 +5,8 @@ $(document).on("submit","form",function(event){
     var adresaCentra=$("#adresaCentra").val();
     var emailCentra=$("#emailCentra").val();
     var brojTelefonaCentrale=$("#brojTelefonaCentrale").val();
-    var newFitnesCentarJSON=formToJSON(nazivCentra,adresaCentra,emailCentra,brojTelefonaCentrale);
+    var idSale = $("#idSale").val();
+    var newFitnesCentarJSON=formToJSON(nazivCentra,adresaCentra,emailCentra,brojTelefonaCentrale,idSale);
     $.ajax({
         type:"POST",
         url:"http://localhost:8181/api/sviFitnesCentri",
@@ -14,16 +15,17 @@ $(document).on("submit","form",function(event){
         data: newFitnesCentarJSON,
         success:function(){
             alert("Uspesno ste dodali fitnes centar "+nazivCentra);
-            window.location.href="sviFitnesCentri.html";
+            window.location.href="brisanjeFitnesCentra.html";
         }
     });
 });
-function formToJSON(nazivCentra,adresaCentra,emailCentra,brojTelefonaCentrale){
+function formToJSON(nazivCentra,adresaCentra,emailCentra,brojTelefonaCentrale,idSale){
     return JSON.stringify({
         "nazivCentra":nazivCentra,
         "adresaCentra":adresaCentra,
         "emailCentra":emailCentra,
-        "brojTelefonaCentrale":brojTelefonaCentrale
+        "brojTelefonaCentrale":brojTelefonaCentrale,
+        "idSale":idSale
     });
 }
 

@@ -7,6 +7,7 @@
 
 
   <script src="js/jquery.min.js"></script>
+  <script src="js/jquery.validate.min.js"></script>
   <script src="js/dodavanjeTreninga.js"></script>
 
 
@@ -45,18 +46,26 @@
         <h2 class="text-center">Popunite formu da biste kreirali novi termin</h2>
 
 
-        <div class="form-group1">
-          <h5 for="cena">Cena:</h5>
-          <input id="cena" name="cena" type="text" class="registar" >
-        </div>
+        <form id="sviTr">
 
-        <div class="form-group1">
-          <h5 for="datumPocetkaTreninga">Datum pocetka:</h5>
-          <input id="datumPocetkaTreninga"  name="datumPocetkaTreninga" type="datetime-local"  class="registar datum" >
-        </div>
-        <div>
-          <button id="kreiraj" >Kreiraj</button>
-        </div>
+          <div class="form-group1">
+            <h5 for="cena" >Cena:</h5>
+            <input id="cena" type="text"  class="registar" placeholder="Cena">
+          </div>
+
+          <div class="form-group1">
+            <h5 for="datumPocetkaTreninga">Datum i vreme pocetka:</h5>
+            <input id="datumPocetkaTreninga" class="registar" type="datetime-local" placeholder="Datum pocetka">
+          </div>
+
+
+          <button id="formBetn"
+                  class="btn btn-primary btn-lg btn-block"
+                  type="submit" value="Register">Submit</button>
+        </form>
+
+
+
 
       </div>
     </div>

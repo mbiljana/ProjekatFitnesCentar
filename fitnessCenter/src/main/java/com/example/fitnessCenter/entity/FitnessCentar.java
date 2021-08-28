@@ -52,6 +52,13 @@ public class FitnessCentar implements Serializable {
         this.brojTelefonaCentrale = brojTelefonaCentrale;
         this.emailCentra = emailCentra;
     }
+    public FitnessCentar(String nazivCentra, String adresaCentra, String brojTelefonaCentrale, String emailCentra,Set<Sala> sala) {
+        this.nazivCentra = nazivCentra;
+        this.adresaCentra = adresaCentra;
+        this.brojTelefonaCentrale = brojTelefonaCentrale;
+        this.emailCentra = emailCentra;
+        this.sale = sala;
+    }
 
     public Long getId() {
         return id;

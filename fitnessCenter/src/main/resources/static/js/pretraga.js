@@ -21,6 +21,8 @@ $(document).ready(function(){
             "tipSortiranja" : tipSortiranja
         });
 
+
+
         $.ajax({
             type: "POST",
             url: "http://localhost:8181/api/termini/pretraga",
@@ -45,7 +47,6 @@ $(document).ready(function(){
 
 
                     $('#terminiTreninga').append(row);
-//                          window.location.href = "pretraga.html";
 
 
                 }

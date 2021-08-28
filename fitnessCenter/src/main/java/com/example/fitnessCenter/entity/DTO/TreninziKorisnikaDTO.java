@@ -17,4 +17,6 @@ public class TreninziKorisnikaDTO {
     public TreninziKorisnikaDTO(Long idKorisnika) {
         this.idKorisnika = idKorisnika;
     }
+
+
 }

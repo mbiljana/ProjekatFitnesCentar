@@ -305,9 +305,6 @@ public class ListaTreningaController {
         List<FiltriraniTreninziDTO> ret = new ArrayList<>();
         for(ListaTreninga t: this.rasporedTreningaService.findAll()) {
 
-
-
-
             FiltriraniTreninziDTO filtrirani = new FiltriraniTreninziDTO();
             filtrirani.setIdt(t.getId());
             filtrirani.setNaziv(t.getTrening().getNaziv());

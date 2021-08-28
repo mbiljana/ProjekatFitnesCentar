@@ -19,11 +19,10 @@ $(document).ready(function () {
                 row += "<td>" + data[i]['opis'] + "</td>";
                 row += "<td>" + data[i]['tipTreninga'] + "</td>";
                 row += "<td>" + data[i]['trajanje'] + "</td>";
-
                 row += "</tr>";
 
                 $('#treninzi').append(row);
-                window.location.href = "home.html";
+               // window.location.href = "dodavanjeTreninga.html";
             }
         },
         error: function (data) {
@@ -46,8 +45,9 @@ $(document).ready(function () {
     $("#kreiraj").click(function() {
         var korisnik = localStorage.getItem('id');
         var trening = selektovanRed;
-        var datumPocetkaTreninga = $("#datumPocetkaTreninga").val();
         var cena = $("#cena").val();
+        var datumPocetkaTreninga = $("#datumPocetkaTreninga").val();
+
         var obj = JSON.stringify({
             "korisnik" : korisnik,
             "trening" : trening,

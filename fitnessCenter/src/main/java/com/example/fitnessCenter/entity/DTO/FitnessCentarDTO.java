@@ -19,6 +19,7 @@ public class FitnessCentarDTO implements Serializable {
     private String adresaCentra;
     private String brojTelefonaCentrale;
     private String emailCentra;
+    private Long idSale;
 
 
     public FitnessCentarDTO() {
@@ -30,5 +31,14 @@ public class FitnessCentarDTO implements Serializable {
         this.adresaCentra = adresaCentra;
         this.brojTelefonaCentrale = brojTelefonaCentrale;
         this.emailCentra = emailCentra;
+    }
+
+    public FitnessCentarDTO(Long id, String nazivCentra, String adresaCentra, String brojTelefonaCentrale, String emailCentra, Long sala) {
+        this.id = id;
+        this.nazivCentra = nazivCentra;
+        this.adresaCentra = adresaCentra;
+        this.brojTelefonaCentrale = brojTelefonaCentrale;
+        this.emailCentra = emailCentra;
+        this.idSale = sala;
     }
 }

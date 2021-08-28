@@ -73,7 +73,6 @@ $(document).ready(function(){
             "email" : email
 
         });
-        // console.log("Rezervisan termin ", selektovanRed);
         $.ajax({
             type: "POST",
             url: "http://localhost:8181/api/sviFitnesCentri/izmena",

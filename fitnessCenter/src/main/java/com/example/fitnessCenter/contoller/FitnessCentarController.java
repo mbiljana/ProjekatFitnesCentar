@@ -3,7 +3,9 @@ package com.example.fitnessCenter.contoller;
 import com.example.fitnessCenter.entity.DTO.FitnessCentarDTO;
 import com.example.fitnessCenter.entity.DTO.IDKorisnikaDTO;
 import com.example.fitnessCenter.entity.FitnessCentar;
+import com.example.fitnessCenter.entity.Sala;
 import com.example.fitnessCenter.service.FitnessCentarService;
+import com.example.fitnessCenter.service.SalaService;
 import com.example.fitnessCenter.service.TrenerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,8 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.print.attribute.standard.Media;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping(value = "api/sviFitnesCentri")
@@ -22,12 +23,14 @@ public class FitnessCentarController {
 
     private final TrenerService trenerService;
     private final FitnessCentarService fitnessCentarService;
+    private final SalaService salaService;
 
     @Autowired
-    public FitnessCentarController(FitnessCentarService fitnessCentarService, TrenerService trenerService)
+    public FitnessCentarController(FitnessCentarService fitnessCentarService, TrenerService trenerService, SalaService salaService)
     {
         this.fitnessCentarService = fitnessCentarService;
         this.trenerService = trenerService;
+        this.salaService = salaService;
     }
 
 
@@ -71,11 +74,20 @@ public class FitnessCentarController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<FitnessCentarDTO> createFitnessCenter(@RequestBody FitnessCentarDTO fcDTO) throws Exception {
-        FitnessCentar fitnessCentar = new FitnessCentar(fcDTO.getNazivCentra(), fcDTO.getAdresaCentra(), fcDTO.getBrojTelefonaCentrale(), fcDTO.getEmailCentra());
-        FitnessCentar noviFitnesCentar = this.fitnessCentarService.save(fitnessCentar);
-        FitnessCentarDTO fitnesCentarDTO = new FitnessCentarDTO(noviFitnesCentar.getId(),noviFitnesCentar.getNazivCentra(),
-                noviFitnesCentar.getAdresaCentra(), noviFitnesCentar.getBrojTelefonaCentrale(), noviFitnesCentar.getEmailCentra());
-        return new ResponseEntity<>(fitnesCentarDTO, HttpStatus.CREATED);
+
+        if((salaService.findOne(fcDTO.getIdSale()) == null)){
+            throw new Exception("Ova sala ne postoji!");
+        }else {
+            Sala sala = salaService.findOne(fcDTO.getIdSale());
+            Set<Sala> sale = new HashSet<>();
+            sale.add(sala);
+            FitnessCentar fitnessCentar = new FitnessCentar(fcDTO.getNazivCentra(), fcDTO.getAdresaCentra(), fcDTO.getBrojTelefonaCentrale(), fcDTO.getEmailCentra(), sale);
+
+            FitnessCentar noviFitnesCentar = this.fitnessCentarService.save(fitnessCentar);
+            FitnessCentarDTO fitnesCentarDTO = new FitnessCentarDTO(noviFitnesCentar.getId(), noviFitnesCentar.getNazivCentra(),
+                    noviFitnesCentar.getAdresaCentra(), noviFitnesCentar.getBrojTelefonaCentrale(), noviFitnesCentar.getEmailCentra());
+            return new ResponseEntity<>(fitnesCentarDTO, HttpStatus.CREATED);
+        }
 
     }
 

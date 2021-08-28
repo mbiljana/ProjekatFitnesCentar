@@ -7,6 +7,7 @@ import com.example.fitnessCenter.entity.DTO.TreninziTreneraDTO;
 import com.example.fitnessCenter.entity.ListaTreninga;
 import com.example.fitnessCenter.entity.Trener;
 import com.example.fitnessCenter.entity.Trening;
+import com.example.fitnessCenter.service.AdministratorService;
 import com.example.fitnessCenter.service.TrenerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,10 +22,12 @@ import java.util.List;
 @RequestMapping(value = "/api/trener")
 public class TrenerController {
     private final TrenerService trenerService;
+    private final AdministratorService administratorService;
 
     @Autowired
-    public TrenerController(TrenerService trenerService) {
+    public TrenerController(TrenerService trenerService, AdministratorService administratorService) {
         this.trenerService = trenerService;
+        this.administratorService = administratorService;
     }
 
 
@@ -87,9 +90,11 @@ public class TrenerController {
     @PostMapping(value = "/brisanje",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> brisanje(@RequestBody TreninziKorisnikaDTO id) {
-        this.trenerService.delete(id.getIdKorisnika());
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    public ResponseEntity<Void> brisanje(@RequestBody TreninziKorisnikaDTO id) throws Exception{
+
+            this.trenerService.delete(id.getIdKorisnika());
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
     }
 
 

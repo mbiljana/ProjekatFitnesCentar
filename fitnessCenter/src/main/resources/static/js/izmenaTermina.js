@@ -72,7 +72,7 @@ $(document).ready(function(){
                 window.location.href = "izmenaTermina.html";
             },
             error: function (data) {
-                alert("Greška!");
+                alert("Nova greska!");
             }
         });
     });

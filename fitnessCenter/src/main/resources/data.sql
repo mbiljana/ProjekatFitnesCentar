@@ -13,18 +13,19 @@ values (20,'true','true','1994-02-03','trener1@gmail.com','Aleksa','aleksam','al
 insert into TRENER(id,aktivan,da_li_je_registrovan,DATUMRODJENJA,email,ime,korisnickoime,lozinka,prezime,telefon,uloga,prosecna_ocena)
 values (21,'true','true','1994-02-03','trener2@gmail.com','Milena','milenad ','md','Dragic','062545875',1,3);
 
-insert into TRENING(id,naziv,opis,tiptreninga,trajanje)
-values (30,'Kardio','Kardio trening za zene','KARDIO',30);
-insert into TRENING(id,naziv,opis,tiptreninga,trajanje)
-values (31,'Joga','Joga za zene','JOGA',60);
-insert into TRENING(id,naziv,opis,tiptreninga,trajanje)
-values (32,'Pilates','Pilates lagani trening','PILATES',70);
+insert into TRENING(id,naziv,opis,tiptreninga,trajanje,trener_id)
+values (30,'Kardio','Kardio trening za zene','KARDIO',30,20);
+insert into TRENING(id,naziv,opis,tiptreninga,trajanje,trener_id)
+values (31,'Joga','Joga za zene','JOGA',60,20);
+insert into TRENING(id,naziv,opis,tiptreninga,trajanje,trener_id)
+values (32,'Pilates','Pilates lagani trening','PILATES',70,20);
 insert into TRENING(id,naziv,opis,tiptreninga,trajanje)
 values (33,'Crossfit','Tezak trening','CROSSFIT',70);
 insert into TRENING(id,naziv,opis,tiptreninga,trajanje)
 values (34,'Crossfit','Lagani crossfit','CROSSFIT',30);
-insert into TRENING(id,naziv,opis,tiptreninga,trajanje)
-values (35,'Joga','Jutarnja joga','JOGA',30);
+insert into TRENING(id,naziv,opis,tiptreninga,trajanje,trener_id)
+values (35,'Joga','Jutarnja joga','JOGA',30,20);
+
 
 insert into FITNESS_CENTAR(id,naziv_centra,adresa_centra,broj_telefona_centrale,email_centra)
 values (101,'BeFit1','Vojvodjanskih Brigada 10','0698574584','befit1@yahoo.com');
@@ -32,5 +33,20 @@ insert into FITNESS_CENTAR(id,naziv_centra,adresa_centra,broj_telefona_centrale,
 values (102,'BeFit2','Marsala Tita 32','03254685','befit2@yahoo.com');
 insert into FITNESS_CENTAR(id,naziv_centra,adresa_centra,broj_telefona_centrale,email_centra)
 values (103,'BeFit3','Borisa Kidrica 58','02145789','befit3@yahoo.com');
+
+insert into SALA(id,oznaka,kapacitet,fitness_centar_id)
+values (301,'S1',30,103);
+
+
+insert into LISTA_TRENINGA(id,broj_prijavljenih,cena,datum_kraja_treninga,datum_pocetka_treninga,fitness_centar_id,sala_id,trening2_id)
+values (801,30,500,'2021-02-03','2021-02-03',103,301,35);
+
+
+
+insert into ODRADJENI_TRENINZI(clan_id,trening_id)
+values (10,801);
+
+insert into PRIJAVLJENI_TRENINZI(clan_id,trening_id)
+values (10,801);
 
 

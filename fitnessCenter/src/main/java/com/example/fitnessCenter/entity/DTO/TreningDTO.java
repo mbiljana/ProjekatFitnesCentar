@@ -13,6 +13,7 @@ public class TreningDTO implements Serializable {
     private int trajanje;
     private Trener trener;
 
+
     public TreningDTO(Long id, String naziv, String opis, String tip, int trajanje) {
         this.id = id;
         this.naziv = naziv;
