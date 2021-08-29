@@ -10,8 +10,8 @@ $(document).ready(function(){
         var telefon = $("#telefon").val();
         var email = $("#email").val();
         var datumRodjenja = $("#datumRodjenja").val();
-       // var aktivan = true;
-       // var da_li_je_registrovan = true;
+        var aktivan = 'true';
+        var da_li_je_registrovan = 'true';
         var obj = JSON.stringify({
             "korisnickoIme" : korisnickoIme,
             "lozinka" : lozinka,
@@ -21,8 +21,8 @@ $(document).ready(function(){
             "email" : email,
             "datumRodjenja" : datumRodjenja,
             "uloga" : 2,
-            "aktivan" : true,
-            "da_li_je_registrovan" : true,
+            "aktivan" : aktivan,
+            "da_li_je_registrovan" : da_li_je_registrovan,
         });
 
         $.ajax({

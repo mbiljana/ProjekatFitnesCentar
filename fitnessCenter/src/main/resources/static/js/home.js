@@ -14,16 +14,11 @@ $(document).ready(function(){
         $("#clanoviFunkcije").css('display', 'none');
         $("#treneriFunkcije").css('display', 'block');
         $("#adminFunkcije").css('display', 'none');
-    }else
-    if(localStorage.getItem('uloga') == "ADMINISTRATOR"){
+    }
+    else{
         $("#clanoviFunkcije").css('display', 'none');
         $("#treneriFunkcije").css('display', 'none');
         $("#adminFunkcije").css('display', 'block');
-    }
-    else{
-        $("#clanoviFunkcije").css('display', 'block');
-        $("#treneriFunkcije").css('display', 'none');
-        $("#adminFunkcije").css('display', 'none');
     }
 
 });

@@ -19,10 +19,10 @@ insert into TRENING(id,naziv,opis,tiptreninga,trajanje,trener_id)
 values (31,'Joga','Joga za zene','JOGA',60,20);
 insert into TRENING(id,naziv,opis,tiptreninga,trajanje,trener_id)
 values (32,'Pilates','Pilates lagani trening','PILATES',70,20);
-insert into TRENING(id,naziv,opis,tiptreninga,trajanje)
-values (33,'Crossfit','Tezak trening','CROSSFIT',70);
-insert into TRENING(id,naziv,opis,tiptreninga,trajanje)
-values (34,'Crossfit','Lagani crossfit','CROSSFIT',30);
+insert into TRENING(id,naziv,opis,tiptreninga,trajanje,trener_id)
+values (33,'Crossfit','Tezak trening','CROSSFIT',70,20);
+insert into TRENING(id,naziv,opis,tiptreninga,trajanje,trener_id)
+values (34,'Crossfit','Lagani crossfit','CROSSFIT',30,20);
 insert into TRENING(id,naziv,opis,tiptreninga,trajanje,trener_id)
 values (35,'Joga','Jutarnja joga','JOGA',30,20);
 

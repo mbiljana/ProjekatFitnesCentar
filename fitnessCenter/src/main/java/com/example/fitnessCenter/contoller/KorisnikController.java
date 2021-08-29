@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -211,18 +212,22 @@ public class KorisnikController {
 
     } */
 
-    @PostMapping(value="/registrujClana" ,consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value="/registrujClana" ,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<RegistrujKorisnikaDTO> createClan(@RequestBody RegistrujKorisnikaDTO DTO) throws Exception {
-        Clan korisnik = new Clan(DTO.getKorisnickoIme(),DTO.getLozinka(),DTO.getIme(),
-                DTO.getPrezime(),DTO.getTelefon(),DTO.getEmail(),DTO.getDatumRodjenja(),Uloga.CLAN,true,true
-        );
-
-        Clan noviKorisnik = this.clanService.save(korisnik);
-        RegistrujKorisnikaDTO korisnikDTO = new RegistrujKorisnikaDTO(noviKorisnik.getId(), noviKorisnik.getKorisnickoIme(),
-                noviKorisnik.getLozinka(), noviKorisnik.getIme(), noviKorisnik.getPrezime(),noviKorisnik.getDatumRodjenja(),
-                noviKorisnik.getEmail(), noviKorisnik.getTelefon(), Uloga.CLAN,true,true);
-       return new ResponseEntity<>(korisnikDTO,HttpStatus.CREATED);
-
+       Clan postojeciClan = this.clanService.getByKorisnickoImeAndLozinka(DTO.getKorisnickoIme(),DTO.getLozinka());
+       //ako vec postoji clan
+       if(postojeciClan != null){
+           return new ResponseEntity<>(HttpStatus.CONFLICT);
+       }
+       //u suprotnom
+        Clan clan = new Clan(DTO.getKorisnickoIme(), DTO.getLozinka(), DTO.getIme(), DTO.getPrezime(),
+                DTO.getTelefon(), DTO.getEmail(), DTO.getDatumRodjenja(),DTO.getUloga(),true,true);
+       clanService.save(clan);
+       RegistrujKorisnikaDTO korisnikDTO = new RegistrujKorisnikaDTO(clan.getId(),clan.getKorisnickoIme(),clan.getLozinka(),
+               clan.getIme(), clan.getPrezime(), clan.getDatumRodjenja(), clan.getEmail(), clan.getTelefon(), clan.getUloga(),true,true);
+       return new ResponseEntity<>(korisnikDTO,HttpStatus.OK);
     }
 
     @PutMapping(value = "/clanovi/{id}", consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -317,6 +322,21 @@ public class KorisnikController {
                 izmenjenKorisnik.getIme(), izmenjenKorisnik.getPrezime(), izmenjenKorisnik.getDatumRodjenja(), izmenjenKorisnik.getEmail(),
                 izmenjenKorisnik.getTelefon(), izmenjenKorisnik.getUloga());
         return new ResponseEntity<>(azuriranKorisnik, HttpStatus.OK);
+
+    }
+
+
+    @PostMapping(value = ("/odobriRegistraciju"),
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<OdobriRegistracijuDTO> odobri(@RequestBody OdobrenaRegistracijaDTO kDTO) throws Exception {
+        Trener trener = new Trener(kDTO.getKorisnickoIme(), kDTO.getLozinka(), kDTO.getIme(), kDTO.getPrezime(), kDTO.getTelefon(), kDTO.getEmail(),kDTO.getDatumRodjenja(), Uloga.TRENER);
+        trener.setAktivan(true);
+        trener.setDaLiJeRegistrovan(true);
+        trenerService.save(trener);
+        OdobriRegistracijuDTO tDTO = new OdobriRegistracijuDTO(trener.getIme(),trener.getPrezime(),trener.getEmail(),trener.getTelefon(),true);
+
+        return new ResponseEntity<>(tDTO,HttpStatus.OK);
 
     }
 

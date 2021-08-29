@@ -31,7 +31,8 @@ $(document).ready(function(){
             data: obj,
             success: function () {
                 alert(obj);
-                window.location.href = "zahtevZaRegistracijuTrenera.html";
+                window.location.href = "index.html";
+
             },
             error: function (data) {
                 alert("Da li se poruka prenela?");
@@ -62,6 +63,40 @@ $(document).ready(function(){
         },
         error: function (response) {
         }
+    });
+
+    let selektovanRed = 0;
+    let staraBoja = null;
+    $("#zahteviZaRegistracijuTrenera").on('click', 'tr:not(:first-child)', function() {
+        if (staraBoja != null) {
+            $('#zahteviZaRegistracijuTrenera tr[data-id=' + selektovanRed + ']').css('background-color', staraBoja); // vracamo staru boju
+        }
+        selektovanRed = this.dataset.id;                    // cuvamo id selektovanog termina
+        staraBoja = $(this).css('background-color');        // cuvamo staru boju da bi vratili kad se odselektuje
+
+        $(this).css('background-color', '#a6c9e2');         // postavljamo novu boju
+        console.log("Selektovan red ", selektovanRed);      // ispis u konzolu radi provere
+    });
+
+    $("#odobri").click(function() {
+        var obj = JSON.stringify({
+            "idKorisnika" : selektovanRed
+        });
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8181/api/korisnik/registrujTrenera",
+            dataType: "json",
+            contentType: "application/json",
+            data: obj,
+            success: function (data) {
+                console.log("SUCCESS : ", data);
+
+            },
+            error: function (data) {
+                alert("Greška!");
+                console.log("ERROR : ", data);
+            }
+        });
     });
 });
 
