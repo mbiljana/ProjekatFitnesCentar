@@ -1,10 +1,7 @@
 package com.example.fitnessCenter.contoller;
 
-import com.example.fitnessCenter.entity.Administrator;
-import com.example.fitnessCenter.entity.Clan;
+import com.example.fitnessCenter.entity.*;
 import com.example.fitnessCenter.entity.DTO.*;
-import com.example.fitnessCenter.entity.Korisnik;
-import com.example.fitnessCenter.entity.Trener;
 import com.example.fitnessCenter.service.AdministratorService;
 import com.example.fitnessCenter.service.ClanService;
 import com.example.fitnessCenter.service.KorisnikService;
@@ -217,13 +214,13 @@ public class KorisnikController {
     @PostMapping(value="/registrujClana" ,consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<RegistrujKorisnikaDTO> createClan(@RequestBody RegistrujKorisnikaDTO DTO) throws Exception {
         Clan korisnik = new Clan(DTO.getKorisnickoIme(),DTO.getLozinka(),DTO.getIme(),
-                DTO.getPrezime(),DTO.getTelefon(),DTO.getEmail(),DTO.getDatumRodjenja(),DTO.getUloga(),true,true
+                DTO.getPrezime(),DTO.getTelefon(),DTO.getEmail(),DTO.getDatumRodjenja(),Uloga.CLAN,true,true
         );
 
         Clan noviKorisnik = this.clanService.save(korisnik);
         RegistrujKorisnikaDTO korisnikDTO = new RegistrujKorisnikaDTO(noviKorisnik.getId(), noviKorisnik.getKorisnickoIme(),
                 noviKorisnik.getLozinka(), noviKorisnik.getIme(), noviKorisnik.getPrezime(),noviKorisnik.getDatumRodjenja(),
-                noviKorisnik.getEmail(), noviKorisnik.getTelefon(), noviKorisnik.getUloga(),true,true);
+                noviKorisnik.getEmail(), noviKorisnik.getTelefon(), Uloga.CLAN,true,true);
        return new ResponseEntity<>(korisnikDTO,HttpStatus.CREATED);
 
     }
