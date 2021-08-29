@@ -1,5 +1,6 @@
 package com.example.fitnessCenter.contoller;
 
+import com.example.fitnessCenter.entity.DTO.DodajSaluDTO;
 import com.example.fitnessCenter.entity.DTO.FitnessCentarDTO;
 import com.example.fitnessCenter.entity.DTO.IDKorisnikaDTO;
 import com.example.fitnessCenter.entity.FitnessCentar;
@@ -115,6 +116,22 @@ public class FitnessCentarController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @PostMapping(value = "/dodajSalu",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<DodajSaluDTO> dodajSalu(@RequestBody DodajSaluDTO fcDTO) throws Exception {
+
+        if((fitnessCentarService.findOne(fcDTO.getIdCentra()) == null)){
+            throw new Exception("Fitnes centar ne postoji!");
+        }else {
+            FitnessCentar fitnessCentar = fitnessCentarService.findOne(fcDTO.getIdCentra());
+            Sala sala = new Sala(fcDTO.getId(),fcDTO.getNaziv(),fcDTO.getKapacitet(),fitnessCentar);
+
+
+            Sala novaSala = this.salaService.save(sala);
+            DodajSaluDTO dodajSaluDTO = new DodajSaluDTO(novaSala.getId(),novaSala.getOznaka(),novaSala.getKapacitet(),novaSala.getFitnessCentar().getId());
+            return new ResponseEntity<>(dodajSaluDTO, HttpStatus.CREATED);
+        }
+
+    }
 
 
 

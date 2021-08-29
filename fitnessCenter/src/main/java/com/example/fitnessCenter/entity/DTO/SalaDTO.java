@@ -11,14 +11,13 @@ public class SalaDTO implements Serializable {
     private Long id;
     private String oznaka;
     private int kapacitet;
-    private Set<ListaTreninga> listaTreningaTerminska = new HashSet<>();
+   // private Set<ListaTreninga> listaTreningaTerminska = new HashSet<>();
     private FitnessCentar fitnessCentar;
 
-    public SalaDTO(Long id, String oznaka, int kapacitet, Set<ListaTreninga> listaTreningaTerminska, FitnessCentar fitnessCentar) {
+    public SalaDTO(Long id, String oznaka, int kapacitet,  FitnessCentar fitnessCentar) {
         this.id = id;
         this.oznaka = oznaka;
         this.kapacitet = kapacitet;
-        this.listaTreningaTerminska = listaTreningaTerminska;
         this.fitnessCentar = fitnessCentar;
     }
 
@@ -49,13 +48,7 @@ public class SalaDTO implements Serializable {
         this.kapacitet = kapacitet;
     }
 
-    public Set<ListaTreninga> getListaTreningaTerminska() {
-        return listaTreningaTerminska;
-    }
 
-    public void setListaTreningaTerminska(Set<ListaTreninga> listaTreningaTerminska) {
-        this.listaTreningaTerminska = listaTreningaTerminska;
-    }
 
     public FitnessCentar getFitnessCentar() {
         return fitnessCentar;

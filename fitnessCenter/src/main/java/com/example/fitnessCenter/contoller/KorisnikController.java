@@ -340,6 +340,24 @@ public class KorisnikController {
 
     }
 
+    @PostMapping(value="/registracijaTreneraAdmin" ,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<RegistrujTreneraAdminDTO> registrujTreneraAdmin(@RequestBody RegistrujTreneraAdminDTO DTO) throws Exception {
+        Trener postojeciTrener = this.trenerService.getByKorisnickoImeAndLozinka(DTO.getKorisnickoIme(),DTO.getLozinka());
+        //ako vec postoji clan
+        if(postojeciTrener != null){
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+        //u suprotnom
+        Trener trener = new Trener(DTO.getKorisnickoIme(), DTO.getLozinka(), DTO.getIme(), DTO.getPrezime(),
+                DTO.getTelefon(), DTO.getEmail(), DTO.getDatumRodjenja(),DTO.getUloga(),true,true);
+        trenerService.save(trener);
+        RegistrujTreneraAdminDTO korisnikDTO = new RegistrujTreneraAdminDTO(trener.getId(),trener.getKorisnickoIme(),trener.getLozinka(),
+                trener.getIme(), trener.getPrezime(), trener.getDatumRodjenja(), trener.getEmail(), trener.getTelefon(), trener.getUloga(),true,true,0);
+        return new ResponseEntity<>(korisnikDTO,HttpStatus.OK);
+    }
+
 
 
 
