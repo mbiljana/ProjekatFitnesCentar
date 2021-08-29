@@ -9,7 +9,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -233,7 +235,7 @@ public class ListaTreningaController {
 
 
 
-    @PostMapping(value = ("/kreiranje"),
+   /* @PostMapping(value = ("/kreiranje"),
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ListaTreninga> kreiranje(@RequestBody KreiranjeTerminaDTO kDTO) throws Exception {
@@ -247,8 +249,19 @@ public class ListaTreningaController {
 
     }
 
+    */
+   @PostMapping(value = ("/kreiranje"),
+           consumes = MediaType.APPLICATION_JSON_VALUE,
+           produces = MediaType.APPLICATION_JSON_VALUE)
+   public ResponseEntity<ListaTreninga> kreiranje(@RequestBody NoviTreningDTO kDTO) throws Exception {
+      // Trener trener =  trenerService.findOne(kDTO.getKorisnik());
+       Trening trening = treningService.findOne(kDTO.getTrening().getId());
+       ListaTreninga noviTermin = new ListaTreninga(kDTO.getNazivTreninga(),kDTO.getCena(),kDTO.getDatumPocetkaTreninga(),trening);
+       ListaTreninga t = rasporedTreningaService.save(noviTermin);
 
+       return new ResponseEntity<>(noviTermin, HttpStatus.CREATED);
 
+   }
 
     @PostMapping(value = ("/izmena"),
             consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -256,6 +269,7 @@ public class ListaTreningaController {
     public ResponseEntity<TerminIzmenaDTO> izmena(@RequestBody IzmenaTerminaDTO kDTO) throws Exception {
         ListaTreninga listaTreninga = rasporedTreningaService.findOne(kDTO.getIdTermina());
         listaTreninga.setCena(kDTO.getCena());
+        LocalDateTime now = LocalDateTime.now();
         listaTreninga.setDatumPocetkaTreninga(kDTO.getDatumPocetka());
         rasporedTreningaService.azuriranje(listaTreninga);
         TerminIzmenaDTO tDTO = new TerminIzmenaDTO(listaTreninga.getCena(),listaTreninga.getDatumPocetkaTreninga());

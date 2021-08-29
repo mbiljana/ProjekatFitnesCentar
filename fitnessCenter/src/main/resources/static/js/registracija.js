@@ -10,6 +10,8 @@ $(document).ready(function(){
         var telefon = $("#telefon").val();
         var email = $("#email").val();
         var datumRodjenja = $("#datumRodjenja").val();
+        var aktivan = true;
+        var da_li_je_registrovan = true;
         var obj = JSON.stringify({
             "korisnickoIme" : korisnickoIme,
             "lozinka" : lozinka,
@@ -18,7 +20,9 @@ $(document).ready(function(){
             "telefon" : telefon,
             "email" : email,
             "datumRodjenja" : datumRodjenja,
-            "uloga" : 2
+            "uloga" : 2,
+            "aktivan" : aktivan,
+            "da_li_je_registrovan" : da_li_je_registrovan,
         });
 
         $.ajax({
@@ -29,7 +33,7 @@ $(document).ready(function(){
             data: obj,
             success: function () {
                 alert(obj);
-                window.location.href = "zahtevZaRegistracijuClana.html";
+                window.location.href = "index.html";
             },
             error: function (data) {
                 alert("Da li se poruka prenela?");
@@ -38,7 +42,7 @@ $(document).ready(function(){
             }
         });
 
-
+/*
     });
     $.ajax({
         type: "GET",
@@ -59,6 +63,8 @@ $(document).ready(function(){
             }
         },
         error: function (response) {
-        }
+        } */
     });
+
+
 });

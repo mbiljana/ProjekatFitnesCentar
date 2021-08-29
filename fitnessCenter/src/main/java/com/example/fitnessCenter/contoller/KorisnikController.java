@@ -200,10 +200,10 @@ public class KorisnikController {
         return new ResponseEntity<>(trazeniKorisnici, HttpStatus.OK);
     }
 
-    @PostMapping(value="/registrujClana" ,consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  /*  @PostMapping(value="/registrujClana" ,consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<KreiranjeKorisnikaDTO> createClan(@RequestBody ZahteviZaRegistracijuDTO DTO) throws Exception {
         Clan korisnik = new Clan(DTO.getKorisnickoIme(),DTO.getLozinka(),DTO.getIme(),
-                DTO.getPrezime(),DTO.getTelefon(),DTO.getEmail(),DTO.getDatumRodjenja(),DTO.getUloga(),true,false
+                DTO.getPrezime(),DTO.getTelefon(),DTO.getEmail(),DTO.getDatumRodjenja(),DTO.getUloga(),true,true
         );
 
         Clan noviKorisnik = this.clanService.save(korisnik);
@@ -211,6 +211,20 @@ public class KorisnikController {
                 noviKorisnik.getLozinka(), noviKorisnik.getIme(), noviKorisnik.getPrezime(),noviKorisnik.getDatumRodjenja(),
                 noviKorisnik.getEmail(), noviKorisnik.getTelefon(), noviKorisnik.getUloga());
         return new ResponseEntity<>(korisnikDTO, HttpStatus.CREATED);
+
+    } */
+
+    @PostMapping(value="/registrujClana" ,consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<RegistrujKorisnikaDTO> createClan(@RequestBody RegistrujKorisnikaDTO DTO) throws Exception {
+        Clan korisnik = new Clan(DTO.getKorisnickoIme(),DTO.getLozinka(),DTO.getIme(),
+                DTO.getPrezime(),DTO.getTelefon(),DTO.getEmail(),DTO.getDatumRodjenja(),DTO.getUloga(),true,true
+        );
+
+        Clan noviKorisnik = this.clanService.save(korisnik);
+        RegistrujKorisnikaDTO korisnikDTO = new RegistrujKorisnikaDTO(noviKorisnik.getId(), noviKorisnik.getKorisnickoIme(),
+                noviKorisnik.getLozinka(), noviKorisnik.getIme(), noviKorisnik.getPrezime(),noviKorisnik.getDatumRodjenja(),
+                noviKorisnik.getEmail(), noviKorisnik.getTelefon(), noviKorisnik.getUloga(),true,true);
+       return new ResponseEntity<>(korisnikDTO,HttpStatus.CREATED);
 
     }
 

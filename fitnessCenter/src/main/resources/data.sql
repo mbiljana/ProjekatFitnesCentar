@@ -6,7 +6,7 @@ values (2,'true','true','1997-01-01','markoal@gmail.com','Marko','almarko','1234
 insert into CLAN(id,aktivan,da_li_je_registrovan,DATUMRODJENJA,email,ime,korisnickoime,lozinka,prezime,telefon,uloga)
 values (10,'true','true','1994-02-03','marijana@gmail.com','Marijana','pmarijana','mp1212','Peric','062545875',2);
 insert into CLAN(id,aktivan,da_li_je_registrovan,DATUMRODJENJA,email,ime,korisnickoime,lozinka,prezime,telefon,uloga)
-values (11,'true','true','1994-02-03','biljana@gmail.com','Biljana','mbiljna','bbbb','Marinkov','062545875',2);
+values (11,'false','true','1994-02-03','biljana@gmail.com','Biljana','mbiljna','bbbb','Marinkov','062545875',2);
 
 insert into TRENER(id,aktivan,da_li_je_registrovan,DATUMRODJENJA,email,ime,korisnickoime,lozinka,prezime,telefon,uloga,prosecna_ocena)
 values (20,'true','true','1994-02-03','trener1@gmail.com','Aleksa','aleksam','alex','Mirkov','062545875',1,5);
