@@ -77,6 +77,13 @@ public class TreningServiceImpl implements TreningService {
     }
 
     @Override
+    public List<Trening> findByNaziv(String naziv){
+        List<Trening> treningList = this.treningRepository.findByNaziv(naziv);
+        return treningList;
+    }
+
+
+    @Override
     public List<Trening> sortTrajanje(){
         return treningRepository.findAllByOrderByTrajanje();
     }

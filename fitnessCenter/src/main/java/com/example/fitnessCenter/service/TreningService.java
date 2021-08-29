@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 public interface TreningService {
-    //Trening findByNaziv(String naziv);
+    List<Trening> findByNaziv(String naziv);
     List<Trening> findAllByNazivOrderByNaziv(String naziv);
     Trening findOne(Long id);
     List<Trening> findAll();

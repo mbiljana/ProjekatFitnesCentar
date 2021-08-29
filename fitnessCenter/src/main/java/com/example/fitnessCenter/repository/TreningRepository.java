@@ -9,11 +9,12 @@ import java.util.List;
 
 @Repository
 public interface TreningRepository extends JpaRepository<Trening,Long> {
-    List<Trening> findAllByNaziv(String naziv);
+    List<Trening> findByNaziv(String naziv);
     List<Trening> findByNazivOrderByNaziv (String naziv);
     List<Trening> findAllByOrderByNaziv();
     List<Trening> findAllByOrderByTipTreninga();
     List<Trening> findAllByTipTreninga(String tip);
     List<Trening> findAllByOrderByTrajanje();
+
 
 }

@@ -129,12 +129,16 @@ public class TreningController {
     }
 
     //dobavljanje treninga po nazivu
-    /* @GetMapping(value="/naziv/{naziv}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TreningDTO>getTreningByNaziv(@PathVariable(name = "naziv") String naziv) {
-        Trening trening = treningService.findByNaziv(naziv);
-        TreningDTO treningDTO = new TreningDTO(trening.getId(),trening.getNaziv(),trening.getOpis(),trening.getTipTreninga(),trening.getTrajanje());
-        return new ResponseEntity<>(treningDTO,HttpStatus.OK);
-    } */
+    @GetMapping(value="/naziv/{naziv}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<TreningDTO>>getTreningByNaziv(@PathVariable(name = "naziv")String naziv){
+        List<Trening> treningList = treningService.findByNaziv(naziv);
+        List<TreningDTO> treningDTOS = new ArrayList<>();
+        for(Trening t : treningList){
+            TreningDTO treningDTO = new TreningDTO(t.getNaziv(),t.getOpis(),t.getTipTreninga(),t.getTrajanje());
+            treningDTOS.add(treningDTO);
+        }
+        return new ResponseEntity<>(treningDTOS,HttpStatus.OK);
+    }
 
     //dobavljanje treninga po tipu
     @GetMapping(value="/tipTreninga/{tipTreninga}",produces = MediaType.APPLICATION_JSON_VALUE)
