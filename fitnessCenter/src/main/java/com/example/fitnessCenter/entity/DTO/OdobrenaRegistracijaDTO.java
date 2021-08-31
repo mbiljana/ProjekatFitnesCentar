@@ -30,6 +30,7 @@ public class OdobrenaRegistracijaDTO {
         this.email = email;
         this.telefon = telefon;
         this.aktivan = aktivan;
+
         this.datumRodjenja = datumRodjenja;
     }
 }

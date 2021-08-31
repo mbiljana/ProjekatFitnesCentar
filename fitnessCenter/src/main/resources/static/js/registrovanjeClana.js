@@ -20,9 +20,10 @@ $(document).ready(function(){
             "telefon" : telefon,
             "email" : email,
             "datumRodjenja" : datumRodjenja,
-            "uloga" : 1,
+            "uloga" : 2,
             "aktivan" : aktivan,
             "da_li_je_registrovan" : da_li_je_registrovan,
+
         });
 
         $.ajax({
@@ -33,37 +34,16 @@ $(document).ready(function(){
             data: obj,
             success: function () {
                 alert(obj);
-                window.location.href = "home.html";
+                window.localStorage.setItem( korisnickoIme, lozinka);
+                window.location.href = "homeReg.html";
             },
             error: function (data) {
                 alert("Da li se poruka prenela?");
-                alert(data);
-                alert("Izgleda da jeste");
             }
         });
 
             });
-            $.ajax({
-                type: "GET",
-                url: "http://localhost:8181/api/korisnik/zahteviZaRegistracijuClana",
-                dataType: "json",
-                success: function (response) {
-                    console.log("SUCCESS:\n", response);
 
-                    for (let trener of response) {
-                        let row = "<tr>";
-                        row += "<td>" + trener.ime + "</td>";
-                        row += "<td>" + trener.prezime + "</td>";
-                        row += "<td>" + trener.email + "</td>";
-                        row += "<td>" + trener.telefon + "</td>";
-                        row += "</tr>";
-
-                        $('#zahteviZaRegistracijuClana').append(row);
-                    }
-                },
-                error: function (response) {
-                }
-    });
 
 
 });

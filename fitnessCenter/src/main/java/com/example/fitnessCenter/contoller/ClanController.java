@@ -40,20 +40,7 @@ public class ClanController {
         return new ResponseEntity<>(trazeniKorisnici, HttpStatus.OK);
     }
 
-    //prikaz jednog clana
-    @GetMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<KorisnikDTO>getUser(@PathVariable("id") Long id){
-        Clan clan = this.clanService.findOne(id);
-        KorisnikDTO trazeniKorisnik = new KorisnikDTO();
-        trazeniKorisnik.setId(clan.getId());
-        trazeniKorisnik.setIme(clan.getIme());
-        trazeniKorisnik.setDatumRodjenja(clan.getDatumRodjenja());
-        trazeniKorisnik.setEmail(clan.getEmail());
-        trazeniKorisnik.setPrezime(clan.getPrezime());
-        trazeniKorisnik.setTelefon(clan.getTelefon());
-        trazeniKorisnik.setUloga(clan.getUloga());
-        return new ResponseEntity<>(trazeniKorisnik,HttpStatus.OK);
-    }
+
 
     //kreiranje novog clana
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)

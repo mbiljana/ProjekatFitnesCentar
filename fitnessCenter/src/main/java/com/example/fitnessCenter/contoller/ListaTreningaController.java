@@ -233,34 +233,6 @@ public class ListaTreningaController {
 
 
 
-   /* @PostMapping(value = ("/kreiranje"),
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ListaTreninga> kreiranje(@RequestBody KreiranjeTerminaDTO kDTO) throws Exception {
-        Trener trener =  trenerService.findOne(kDTO.getKorisnik());
-        Trening trening = treningService.findOne(kDTO.getTrening());
-        ListaTreninga noviTermin = new ListaTreninga(kDTO.getCena(), kDTO.getDatumPocetka(), trening,
-                trener.getFitnessCentar());
-        ListaTreninga t = rasporedTreningaService.save(noviTermin);
-
-        return new ResponseEntity<>(noviTermin, HttpStatus.CREATED);
-
-    }
-
-    */
-   /*@PostMapping(value = ("/kreiranje"),
-           consumes = MediaType.APPLICATION_JSON_VALUE,
-           produces = MediaType.APPLICATION_JSON_VALUE)
-   public ResponseEntity<ListaTreninga> kreiranje(@RequestBody NoviTreningDTO kDTO) throws Exception {
-      // Trener trener =  trenerService.findOne(kDTO.getKorisnik());
-       Trening trening = treningService.findOne(kDTO.getIdTreninga());
-       ListaTreninga noviTermin = new ListaTreninga(kDTO.getNazivTreninga(),kDTO.getCena(),kDTO.getDatumPocetkaTreninga(),trening);
-       ListaTreninga t = rasporedTreningaService.save(noviTermin);
-
-       return new ResponseEntity<>(t, HttpStatus.CREATED);
-
-   } */
-
     @PostMapping(value = ("/kreiranje"),
             consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ListaTreningaDTO> createTrening(@RequestBody NoviTreningDTO fcDTO) throws Exception {
@@ -383,87 +355,7 @@ public class ListaTreningaController {
 
 
         }
-        List<FiltriraniTreninziDTO> zasortiranje = new ArrayList<>();
-        for(FiltriraniTreninziDTO pp : ret)
-            if(pp.isOdgovara())
-                zasortiranje.add(pp);
-        for(FiltriraniTreninziDTO trening : zasortiranje) {
-            System.out.println(trening + "\n");
-        }
-
-        switch (info.getTipSortiranja()) {
-            case 1:
-                for(int i = 0; i < zasortiranje.size(); i++) {
-                    for(int j = i; j < zasortiranje.size(); j++) {
-                        if(zasortiranje.get(i).getNaziv().compareTo(zasortiranje.get(j).getNaziv()) > 0) {
-                            FiltriraniTreninziDTO pom = new FiltriraniTreninziDTO();
-                            pom.zameni(zasortiranje.get(i));
-                            zasortiranje.get(i).zameni(zasortiranje.get(j));
-                            zasortiranje.get(j).zameni(pom);
-                        }
-
-                    }
-                }
-                break;
-
-            case 2:
-                for(int i = 0; i < zasortiranje.size(); i++) {
-                    for(int j = i; j < zasortiranje.size(); j++) {
-                        if(zasortiranje.get(i).getTrajanje() > zasortiranje.get(j).getTrajanje()){
-                            FiltriraniTreninziDTO pom = new FiltriraniTreninziDTO();
-                            pom.zameni(zasortiranje.get(i));
-                            zasortiranje.get(i).zameni(zasortiranje.get(j));
-                            zasortiranje.get(j).zameni(pom);
-                        }
-                    }
-                }
-                break;
-
-            case 3:
-
-
-                for(int i = 0; i < zasortiranje.size(); i++) {
-                    for(int j = i; j < zasortiranje.size(); j++) {
-                        if(zasortiranje.get(i).getCena() > zasortiranje.get(j).getCena()) {
-                            FiltriraniTreninziDTO pom = new FiltriraniTreninziDTO();
-                            pom.zameni(zasortiranje.get(i));
-                            zasortiranje.get(i).zameni(zasortiranje.get(j));
-                            zasortiranje.get(j).zameni(pom);
-                        }
-                    }
-                }
-                break;
-            case 4:
-
-                for(int i = 0; i < zasortiranje.size(); i++) {
-                    for(int j = i; j < zasortiranje.size(); j++) {
-                        if(zasortiranje.get(i).getDatumPocetka().after(zasortiranje.get(j).getDatumPocetka())) {
-                            FiltriraniTreninziDTO pom = new FiltriraniTreninziDTO();
-                            pom.zameni(zasortiranje.get(i));
-                            zasortiranje.get(i).zameni(zasortiranje.get(j));
-                            zasortiranje.get(j).zameni(pom);
-                        }
-                    }
-                }
-                break;
-
-            case 5:
-
-                for(int i = 0; i < zasortiranje.size(); i++) {
-                    for(int j = i; j < zasortiranje.size(); j++) {
-                        if(zasortiranje.get(i).getProsecnaOcena() > zasortiranje.get(j).getProsecnaOcena()) {
-                            FiltriraniTreninziDTO pom = new FiltriraniTreninziDTO();
-                            pom.zameni(zasortiranje.get(i));
-                            zasortiranje.get(i).zameni(zasortiranje.get(j));
-                            zasortiranje.get(j).zameni(pom);
-                        }
-                    }
-                }
-                break;
-        }
-
-
-        return new ResponseEntity<>(zasortiranje, HttpStatus.OK);
+        return new ResponseEntity<>(ret, HttpStatus.OK);
     }
 
 

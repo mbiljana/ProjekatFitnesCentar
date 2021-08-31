@@ -28,17 +28,6 @@ public class TreningController {
         this.trenerService = trenerService;
     }
 
-    //metoda za dobavljanje svih treninga
-  /*  @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<TreningDTO>> getTreninzi(){
-        List<Trening> treningList = this.treningService.findAll();
-        List<TreningDTO> treningDTOS = new ArrayList<>();
-        for(Trening trening : treningList){
-            TreningDTO treningDTO = new TreningDTO(trening.getId(),trening.getNaziv(),trening.getOpis(),trening.getTipTreninga(),trening.getTrajanje(),trening.getTrener());
-            treningDTOS.add(treningDTO);
-        }
-        return new ResponseEntity<>(treningDTOS, HttpStatus.OK);
-    } */
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<TreningDTO>> getTreninzi() {
@@ -51,35 +40,9 @@ public class TreningController {
         return new ResponseEntity<>(trazeniTreninzi, HttpStatus.OK);
     }
 
-    //prikaz jednog treninga
-    @GetMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TreningDTO>getTrening(@PathVariable("id") Long id){
-        Trening trening = this.treningService.findOne(id);
-        TreningDTO treningDTO = new TreningDTO();
-        treningDTO.setNaziv(trening.getNaziv());
-        treningDTO.setOpis(trening.getOpis());
-        treningDTO.setTip(trening.getTipTreninga());
-        treningDTO.setTrajanje(trening.getTrajanje());
-        return new ResponseEntity<>(treningDTO,HttpStatus.OK);
-    }
 
 
-    //metoda za cuvanje novog treninga
-   /*
-   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TreningDTO> saveTrening(@RequestBody TreningDTO treningDTO) throws Exception{
-        //kreira se objekat klase Trening a vrednosti astributa su iz DTO objekta
-        Trening trening = new Trening(treningDTO.getId(),treningDTO.getNaziv(),treningDTO.getOpis(),treningDTO.getTip(),treningDTO.getTrajanje());
-       //pozivanjem metode servisa kreira se novi trening
-        Trening noviTrening = treningService.save(trening);
-        //mapira se novi trening na DTO objekat
-        TreningDTO noviTreningDTO = new TreningDTO(noviTrening.getId(),noviTrening.getNaziv(),noviTrening.getOpis(),noviTrening.getTipTreninga(),noviTrening.getTrajanje());
 
-        //vraca se odgovor 201 created
-        return new ResponseEntity<>(noviTreningDTO,HttpStatus.CREATED);
-    }
-
-    */
 
 
     //metoda za brisanje postojeceg treninga

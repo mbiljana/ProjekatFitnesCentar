@@ -73,7 +73,7 @@ $(document).ready(function(){
             },
             error: function (data) {
                 alert("Greska!");
-                window.location.href = "ocenjeniTreninzi.html";
+                window.location.href = "odradjeniTreninzi.html";
             }
         });
     });

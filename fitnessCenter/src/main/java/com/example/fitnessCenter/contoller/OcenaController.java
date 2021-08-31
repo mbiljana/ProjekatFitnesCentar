@@ -45,7 +45,7 @@ public class OcenaController {
         ocena.setClan(clan);
         ocena.setOcena(info.getOcena());
         OcenaTreninga novaOcena = this.ocenaTreningaService.save(ocena);
-        TacanKorisnikDTO kdto = new TacanKorisnikDTO(novaOcena.getClan().getId(), novaOcena.getTermin().getId(), novaOcena.getOcena() );
+        //TacanKorisnikDTO kdto = new TacanKorisnikDTO(novaOcena.getClan().getId(), novaOcena.getTermin().getId(), novaOcena.getOcena() );
         return new ResponseEntity<>(ocena, HttpStatus.OK);
 
 

@@ -37,8 +37,6 @@ $(document).ready(function(){
             },
             error: function (data) {
                 alert("Da li se poruka prenela?");
-                alert(data);
-                alert("Izgleda da jeste");
             }
         });
 
