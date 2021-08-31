@@ -2,6 +2,7 @@ package com.example.fitnessCenter.contoller;
 
 
 import com.example.fitnessCenter.entity.Clan;
+import com.example.fitnessCenter.entity.DTO.OcenaTreningaDTO;
 import com.example.fitnessCenter.entity.DTO.TacanKorisnikDTO;
 import com.example.fitnessCenter.entity.ListaTreninga;
 import com.example.fitnessCenter.entity.OcenaTreninga;
@@ -45,7 +46,6 @@ public class OcenaController {
         ocena.setOcena(info.getOcena());
         OcenaTreninga novaOcena = this.ocenaTreningaService.save(ocena);
         TacanKorisnikDTO kdto = new TacanKorisnikDTO(novaOcena.getClan().getId(), novaOcena.getTermin().getId(), novaOcena.getOcena() );
-
         return new ResponseEntity<>(ocena, HttpStatus.OK);
 
 

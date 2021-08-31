@@ -10,9 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping(value="/api/termini")
@@ -250,18 +248,33 @@ public class ListaTreningaController {
     }
 
     */
-   @PostMapping(value = ("/kreiranje"),
+   /*@PostMapping(value = ("/kreiranje"),
            consumes = MediaType.APPLICATION_JSON_VALUE,
            produces = MediaType.APPLICATION_JSON_VALUE)
    public ResponseEntity<ListaTreninga> kreiranje(@RequestBody NoviTreningDTO kDTO) throws Exception {
       // Trener trener =  trenerService.findOne(kDTO.getKorisnik());
-       Trening trening = treningService.findOne(kDTO.getTrening().getId());
+       Trening trening = treningService.findOne(kDTO.getIdTreninga());
        ListaTreninga noviTermin = new ListaTreninga(kDTO.getNazivTreninga(),kDTO.getCena(),kDTO.getDatumPocetkaTreninga(),trening);
        ListaTreninga t = rasporedTreningaService.save(noviTermin);
 
-       return new ResponseEntity<>(noviTermin, HttpStatus.CREATED);
+       return new ResponseEntity<>(t, HttpStatus.CREATED);
 
-   }
+   } */
+
+    @PostMapping(value = ("/kreiranje"),
+            consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ListaTreningaDTO> createTrening(@RequestBody NoviTreningDTO fcDTO) throws Exception {
+
+            Trening trening = treningService.findOne(fcDTO.getIdTreninga());
+
+            ListaTreninga listaTreninga = new ListaTreninga(fcDTO.getNazivTreninga(),fcDTO.getCena(),fcDTO.getDatumPocetkaTreninga(),trening);
+
+            ListaTreninga novaListaTreninga = this.rasporedTreningaService.save(listaTreninga);
+            ListaTreningaDTO listaTreningaDTO = new ListaTreningaDTO(novaListaTreninga.getId(),novaListaTreninga.getCena(),novaListaTreninga.getDatumPocetkaTreninga(),novaListaTreninga.getDatumKrajaTreninga(),novaListaTreninga.getBrojPrijavljenih(),novaListaTreninga.getTrening2(),novaListaTreninga.getSala(),novaListaTreninga.getFitnessCentar());
+            return new ResponseEntity<>(listaTreningaDTO, HttpStatus.CREATED);
+        }
+
+
 
     @PostMapping(value = ("/izmena"),
             consumes = MediaType.APPLICATION_JSON_VALUE,

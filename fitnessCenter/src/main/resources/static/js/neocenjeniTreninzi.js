@@ -54,7 +54,7 @@ $(document).ready(function(){
 
     $("#oceni").click(function() {
         var korisnik = localStorage.getItem('id');
-        var termin = selektovanRed;
+        var termin = selektovanRed.id;
         var ocena = $("#ocena").val().trim();
         var obj = JSON.stringify({
             "idKorisnika" : korisnik,
@@ -71,7 +71,8 @@ $(document).ready(function(){
                 console.log("SUCCESS : ", data);
             },
             error: function (data) {
-                alert("Greška!");
+                alert("Ocenjeno!");
+                window.location.href = "ocenjeniTreninzi.html";
             }
         });
     });

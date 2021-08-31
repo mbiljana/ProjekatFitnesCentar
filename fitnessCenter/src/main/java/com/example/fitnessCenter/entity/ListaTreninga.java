@@ -84,6 +84,12 @@ public class ListaTreninga implements Serializable {
         this.trening2 = trening;
     }
 
+    public ListaTreninga(String naziv,double cena, Date datumPocetkaTreninga) {
+        this.trening2.setNaziv(naziv);
+        this.cena = cena;
+        this.datumPocetkaTreninga = datumPocetkaTreninga;
+
+    }
     public ListaTreninga(double cena, Date datumPocetkaTreninga,Trening trening, FitnessCentar fitnessCentar) {
 
         this.cena = cena;

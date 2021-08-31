@@ -45,8 +45,6 @@ values (802,70,200,'2021-03-03','2021-03-03',103,301,34);
 
 insert into OCENA_TRENINGA(id,ocena,clan_id,termin_id,trening_id)
 values(555,5,10,801,801);
-insert into OCENA_TRENINGA(id,ocena,clan_id,termin_id,trening_id)
-values(556,5,11,802,802);
 
 
 

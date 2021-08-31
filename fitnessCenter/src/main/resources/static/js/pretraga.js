@@ -1,8 +1,8 @@
 $(document).ready(function(){
     if(localStorage.getItem('uloga') != "CLAN")
-        $("#zaClanove").css('display', 'none');
+       $("#zaClanove").css('display', 'none');
     else
-        $("#zaClanove").css('display', 'block');
+       $("#zaClanove").css('display', 'block');
     $("#traziTrening").submit(function(event) {
         event.preventDefault();
 
@@ -12,13 +12,11 @@ $(document).ready(function(){
         var datumPocetka = $("#datumPocetka").val();
         var cena = $("#cena").val();
 
-        var tipSortiranja = $("#sortiranje").val();
         var obj = JSON.stringify({
             "naziv" : naziv,
             "trajanje" : trajanje,
             "cena" : cena,
-            "datumPocetka" : datumPocetka,
-            "tipSortiranja" : tipSortiranja
+            "datumPocetka" : datumPocetka
         });
 
 
@@ -38,9 +36,6 @@ $(document).ready(function(){
                     row += "<td>" + data[i]['cena'] + "</td>";
                     row += "<td>" + data[i]['trajanje'] + "</td>";
                     row += "<td>" + (data[i]['datumPocetka'].split("T"))[0] + "</td>";
-
-                    row += "<td>" + data[i]['tip'] + "</td>";
-
                     row += "<td>" + data[i]['nazivSale'] + "</td>";
 
                     row += "</tr>";

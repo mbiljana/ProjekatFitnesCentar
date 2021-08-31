@@ -14,19 +14,16 @@ public class NoviTreningDTO {
     private String nazivTreninga;
     private Date datumPocetkaTreninga;
     private double cena;
-    private Sala sala;
-    private Long korisnik;
-    private Trening trening;
+   // private Long korisnik;
+    private Long idTreninga;
 
     public NoviTreningDTO() {
     }
 
-    public NoviTreningDTO( String nazivTreninga,Date datumPocetkaTreninga, double cena, Sala sala, Long korisnik, Trening trening) {
+    public NoviTreningDTO(String nazivTreninga, Date datumPocetkaTreninga, double cena, Long idTreninga) {
         this.nazivTreninga = nazivTreninga;
         this.datumPocetkaTreninga = datumPocetkaTreninga;
         this.cena = cena;
-        this.sala = sala;
-        this.korisnik = korisnik;
-        this.trening = trening;
+        this.idTreninga = idTreninga;
     }
 }
