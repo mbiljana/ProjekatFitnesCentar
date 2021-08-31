@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
     var korisnik = localStorage.getItem('id');
+
     var obj = JSON.stringify({
         "idKorisnika" : korisnik
     });
@@ -43,7 +44,7 @@ $(document).ready(function(){
     let staraBoja = null;
     $("#neocenjeniTreninzi").on('click', 'tr:not(:first-child)', function() {
         if (staraBoja != null) {
-            $('#neocenjeni tr[data-id=' + selektovanRed + ']').css('background-color', staraBoja); // vracamo staru boju
+            $('#neocenjeniTreninzi tr[data-id=' + selektovanRed + ']').css('background-color', staraBoja); // vracamo staru boju
         }
         selektovanRed = this.dataset.id;                    // cuvamo id selektovanog termina
         staraBoja = $(this).css('background-color');        // cuvamo staru boju da bi vratili kad se odselektuje
@@ -54,7 +55,7 @@ $(document).ready(function(){
 
     $("#oceni").click(function() {
         var korisnik = localStorage.getItem('id');
-        var termin = selektovanRed.id;
+        var termin = selektovanRed;
         var ocena = $("#ocena").val().trim();
         var obj = JSON.stringify({
             "idKorisnika" : korisnik,
@@ -71,7 +72,7 @@ $(document).ready(function(){
                 console.log("SUCCESS : ", data);
             },
             error: function (data) {
-                alert("Ocenjeno!");
+                alert("Greska!");
                 window.location.href = "ocenjeniTreninzi.html";
             }
         });

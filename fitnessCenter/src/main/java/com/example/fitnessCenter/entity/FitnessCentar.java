@@ -28,7 +28,7 @@ public class FitnessCentar implements Serializable {
     private Set<Trener> treneri = new HashSet<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "fitnessCentar",fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "fitnessCentar",fetch = FetchType.EAGER,orphanRemoval = true)
     private Set<Sala> sale = new HashSet<>();
 
     @JsonIgnore

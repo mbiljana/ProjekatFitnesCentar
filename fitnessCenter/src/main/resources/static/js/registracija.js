@@ -20,7 +20,7 @@ $(document).ready(function(){
             "telefon" : telefon,
             "email" : email,
             "datumRodjenja" : datumRodjenja,
-            "uloga" : 1,
+            "uloga" : 2,
             "aktivan" : aktivan,
             "da_li_je_registrovan" : da_li_je_registrovan,
         });

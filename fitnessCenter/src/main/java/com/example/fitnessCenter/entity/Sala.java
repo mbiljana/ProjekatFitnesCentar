@@ -4,6 +4,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,9 +33,10 @@ public class Sala implements Serializable {
 
    /* @ManyToOne(fetch = FetchType.EAGER)
     private FitnessCentar fitnessCentar; */
-    @OneToMany(mappedBy = "sala", fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
+    //@JsonIgnore
+    @OneToMany(mappedBy = "sala", fetch = FetchType.EAGER,orphanRemoval = true)
     private Set<ListaTreninga> listaTreninga = new HashSet<>();
-
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     private FitnessCentar fitnessCentar;
 

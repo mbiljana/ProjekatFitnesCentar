@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,15 +28,18 @@ public class OcenaTreninga implements Serializable {
     private double ocena;
 
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     private ListaTreninga trening;
 
     /*@ManyToMany(mappedBy = "ocene")
     private Set<Clan> clanovi = new HashSet<>(); */
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     private ListaTreninga termin;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     private Clan clan;
 

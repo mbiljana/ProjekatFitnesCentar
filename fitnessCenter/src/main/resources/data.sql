@@ -36,6 +36,10 @@ values (103,'BeFit3','Borisa Kidrica 58','02145789','befit3@yahoo.com');
 
 insert into SALA(id,oznaka,kapacitet,fitness_centar_id)
 values (301,'S1',30,103);
+insert into SALA(id,oznaka,kapacitet,fitness_centar_id)
+values (302,'S1',30,103);
+insert into SALA(id,oznaka,kapacitet,fitness_centar_id)
+values (303,'S1',30,103);
 
 
 insert into LISTA_TRENINGA(id,broj_prijavljenih,cena,datum_kraja_treninga,datum_pocetka_treninga,fitness_centar_id,sala_id,trening2_id)

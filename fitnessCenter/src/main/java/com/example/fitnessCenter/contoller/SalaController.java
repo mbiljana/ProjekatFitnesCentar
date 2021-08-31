@@ -5,6 +5,7 @@ import com.example.fitnessCenter.entity.DTO.IDKorisnikaDTO;
 import com.example.fitnessCenter.entity.DTO.SalaDTO;
 import com.example.fitnessCenter.entity.DTO.TreninziKorisnikaDTO;
 import com.example.fitnessCenter.entity.FitnessCentar;
+import com.example.fitnessCenter.entity.ListaTreninga;
 import com.example.fitnessCenter.entity.Sala;
 import com.example.fitnessCenter.service.SalaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping(value = "api/sale")
@@ -44,6 +47,17 @@ public class SalaController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> brisanje(@RequestBody IDKorisnikaDTO id) {
+        Sala sala = this.salaService.findOne(id.getIdKorisnika());
+        FitnessCentar fc = sala.getFitnessCentar();
+        Set<ListaTreninga> listaTreninga = sala.getListaTreninga();
+        fc.getSale().remove(sala);
+
+        for(ListaTreninga lt : listaTreninga){
+            if(lt.getSala() == sala){
+                listaTreninga.remove(lt);
+            }
+        }
+
         this.salaService.delete(id.getIdKorisnika());
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

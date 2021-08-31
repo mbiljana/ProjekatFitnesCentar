@@ -37,7 +37,7 @@ public class Trening implements Serializable {
     private Set<OcenaTreninga> oceneTreninga = new HashSet<>(); */
 
 
-
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     private Trener trener;
 

@@ -17,6 +17,7 @@ public class Trener extends Korisnik {
     @OneToMany(mappedBy = "trener", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Trening> listaTreninga = new HashSet<Trening>();
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     private FitnessCentar fitnessCentar;
 

@@ -28,6 +28,7 @@ public class ListaTreninga implements Serializable {
     @Column
     private Date datumKrajaTreninga;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     private Sala sala;
 
