@@ -2,6 +2,7 @@ package com.example.fitnessCenter.service.impl;
 
 import com.example.fitnessCenter.entity.Clan;
 import com.example.fitnessCenter.entity.FitnessCentar;
+import com.example.fitnessCenter.entity.Sala;
 import com.example.fitnessCenter.repository.FitnessCentarRepository;
 import com.example.fitnessCenter.service.FitnessCentarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,16 +53,9 @@ public class FitnessCentarServiceImpl implements FitnessCentarService {
     }
 
     @Override
-    public FitnessCentar update (FitnessCentar fitnessCentar) throws Exception{
-        FitnessCentar updated = this.fitnessCentarRepository.findById(fitnessCentar.getId()).get();
-        if(fitnessCentar.getId() == null){
-            throw  new Exception("Greska! Nepostojeci korisnik!");
-        }
-        updated.setNazivCentra(fitnessCentar.getNazivCentra());
-        updated.setAdresaCentra(fitnessCentar.getAdresaCentra());
-        updated.setEmailCentra(fitnessCentar.getEmailCentra());
-        updated.setBrojTelefonaCentrale(fitnessCentar.getBrojTelefonaCentrale());
-        FitnessCentar promenjen = fitnessCentarRepository.save(updated);
-        return promenjen;
+    public FitnessCentar azuriranje(FitnessCentar fitnessCentar)  {
+
+        FitnessCentar noviFC = this.fitnessCentarRepository.save(fitnessCentar);
+        return noviFC;
     }
 }

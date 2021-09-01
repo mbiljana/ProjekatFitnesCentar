@@ -1,8 +1,6 @@
 package com.example.fitnessCenter.contoller;
 
-import com.example.fitnessCenter.entity.DTO.DodajSaluDTO;
-import com.example.fitnessCenter.entity.DTO.FitnessCentarDTO;
-import com.example.fitnessCenter.entity.DTO.IDKorisnikaDTO;
+import com.example.fitnessCenter.entity.DTO.*;
 import com.example.fitnessCenter.entity.FitnessCentar;
 import com.example.fitnessCenter.entity.Sala;
 import com.example.fitnessCenter.service.FitnessCentarService;
@@ -83,19 +81,7 @@ public class FitnessCentarController {
 
     }
 
-    @PostMapping(value = "/izmena",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> izmena(@RequestBody FitnessCentarDTO fcDTO) throws Exception {
-        FitnessCentar fitnesCentar = fitnessCentarService.findOne(fcDTO.getId());
-        fitnesCentar.setAdresaCentra(fcDTO.getAdresaCentra());
-        fitnesCentar.setNazivCentra(fcDTO.getNazivCentra());
-        fitnesCentar.setEmailCentra(fcDTO.getEmailCentra());
-        fitnesCentar.setBrojTelefonaCentrale(fcDTO.getBrojTelefonaCentrale());
-        fitnessCentarService.update(fitnesCentar);
-        return new ResponseEntity<>(HttpStatus.OK);
 
-    }
 
 
     //brisanje
@@ -121,6 +107,23 @@ public class FitnessCentarController {
             DodajSaluDTO dodajSaluDTO = new DodajSaluDTO(novaSala.getId(),novaSala.getOznaka(),novaSala.getKapacitet(),novaSala.getFitnessCentar().getId());
             return new ResponseEntity<>(dodajSaluDTO, HttpStatus.CREATED);
         }
+
+    }
+
+    @PostMapping(value = ("/izmena"),
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<FCIzmenaDTO> izmena(@RequestBody IzmenaFCDTO kDTO) throws Exception {
+        FitnessCentar fitnessCentar = fitnessCentarService.findOne(kDTO.getIdTermina());
+        fitnessCentar.setNazivCentra(kDTO.getNazivCentra());
+        fitnessCentar.setAdresaCentra(kDTO.getAdresaCentra());
+        fitnessCentar.setEmailCentra(kDTO.getEmailCentra());
+        fitnessCentar.setBrojTelefonaCentrale(kDTO.getBrojTelefonaCentrale());
+
+        fitnessCentarService.azuriranje(fitnessCentar);
+        FCIzmenaDTO tDTO = new FCIzmenaDTO(fitnessCentar.getNazivCentra(),fitnessCentar.getAdresaCentra(),fitnessCentar.getBrojTelefonaCentrale(),fitnessCentar.getEmailCentra());
+
+        return new ResponseEntity<>(tDTO,HttpStatus.OK);
 
     }
 
