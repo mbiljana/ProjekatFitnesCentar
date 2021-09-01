@@ -209,7 +209,9 @@ public class KorisnikController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<OdobriRegistracijuDTO> odobri(@RequestBody OdobrenaRegistracijaDTO kDTO) throws Exception {
-        Trener trener = new Trener(kDTO.getKorisnickoIme(), kDTO.getLozinka(), kDTO.getIme(), kDTO.getPrezime(), kDTO.getTelefon(), kDTO.getEmail(),kDTO.getDatumRodjenja(), Uloga.TRENER);
+        Trener trener = new Trener(kDTO.getKorisnickoIme(), kDTO.getLozinka(), kDTO.getIme(), kDTO.getPrezime(), kDTO.getTelefon(), kDTO.getEmail(),kDTO.getDatumRodjenja());
+        System.out.println(kDTO.getIme());
+        trener.setUloga(Uloga.TRENER);
         trener.setAktivan(true);
         trener.setDaLiJeRegistrovan(true);
         Trener noviTrener = this.trenerService.save(trener);

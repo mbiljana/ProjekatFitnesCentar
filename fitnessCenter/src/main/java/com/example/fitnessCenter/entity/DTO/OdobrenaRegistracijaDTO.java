@@ -16,20 +16,18 @@ public class OdobrenaRegistracijaDTO {
     private String prezime;
     private String email;
     private String telefon;
-    private boolean aktivan;
     private Date datumRodjenja;
 
     public OdobrenaRegistracijaDTO() {
     }
 
-    public OdobrenaRegistracijaDTO(String korisnickoIme, String lozinka, String ime, String prezime, String email, String telefon, boolean aktivan, Date datumRodjenja) {
+    public OdobrenaRegistracijaDTO(String korisnickoIme, String lozinka, String ime, String prezime, String email, String telefon,  Date datumRodjenja) {
         this.korisnickoIme = korisnickoIme;
         this.lozinka = lozinka;
         this.ime = ime;
         this.prezime = prezime;
         this.email = email;
         this.telefon = telefon;
-        this.aktivan = aktivan;
 
         this.datumRodjenja = datumRodjenja;
     }

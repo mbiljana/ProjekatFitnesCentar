@@ -28,6 +28,10 @@ public class Trener extends Korisnik {
         super(korisnickoIme, lozinka, ime, prezime, telefon, email, datumRodjenja, uloga, aktivan);
     }
 
+    public Trener(String korisnickoIme, String lozinka, String ime, String prezime, String telefon, String email, Date datumRodjenja) {
+        super(korisnickoIme, lozinka, ime, prezime, telefon, email, datumRodjenja);
+    }
+
     public Trener(String korisnickoIme, String lozinka, String ime, String prezime, String telefon, String email, Date datumRodjenja, Uloga uloga) {
         super(korisnickoIme, lozinka, ime, prezime, telefon, email, datumRodjenja, uloga);
     }

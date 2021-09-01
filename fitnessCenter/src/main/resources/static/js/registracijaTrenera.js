@@ -18,9 +18,7 @@ $(document).ready(function(){
             "prezime": prezime,
             "telefon": telefon,
             "email": email,
-            "telefon": telefon,
-            "datumRodjenja": datumRodjenja,
-            "uloga": 1
+            "datumRodjenja": datumRodjenja
         });
 
         $.ajax({
