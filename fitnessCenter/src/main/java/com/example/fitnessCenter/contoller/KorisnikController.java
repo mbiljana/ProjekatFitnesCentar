@@ -141,10 +141,13 @@ public class KorisnikController {
        }
        //u suprotnom
         Clan clan = new Clan(DTO.getKorisnickoIme(), DTO.getLozinka(), DTO.getIme(), DTO.getPrezime(),
-                DTO.getTelefon(), DTO.getEmail(), DTO.getDatumRodjenja(),DTO.getUloga(),true,true);
+               DTO.getTelefon(), DTO.getEmail(), DTO.getDatumRodjenja(),DTO.getUloga(),true,true);
+        clan.setKorisnickoIme(DTO.getKorisnickoIme());
+
+
        Clan noviClan =this.clanService.save(clan);
-      // clanService.save(clan);
-       RegistrujKorisnikaDTO korisnikDTO = new RegistrujKorisnikaDTO(noviClan.getId(),noviClan.getKorisnickoIme(),noviClan.getLozinka(),
+
+       RegistrujKorisnikaDTO korisnikDTO = new RegistrujKorisnikaDTO(noviClan.getKorisnickoIme(),noviClan.getLozinka(),
                noviClan.getIme(), noviClan.getPrezime(), noviClan.getDatumRodjenja(), noviClan.getEmail(), noviClan.getTelefon(), noviClan.getUloga(),true,true);
        return new ResponseEntity<>(korisnikDTO,HttpStatus.OK);
     }

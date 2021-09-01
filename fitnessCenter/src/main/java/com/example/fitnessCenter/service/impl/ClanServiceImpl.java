@@ -40,7 +40,7 @@ public class ClanServiceImpl implements ClanService {
         if(clan.getId() != null){
             throw new Exception("ID mora biti jedinstven");
         }
-        Clan novi = this.clanRepository.save(clan);
+        Clan novi = clanRepository.save(clan);
         return  novi;
     }
 
@@ -75,4 +75,14 @@ public class ClanServiceImpl implements ClanService {
         Clan promenjen = clanRepository.save(updated);
         return promenjen;
     }
+
+    @Override
+    public Clan azuriranje(Clan clan)  {
+
+        Clan noviClan = this.clanRepository.save(clan);
+        return noviClan;
+    }
+
+
+
 }

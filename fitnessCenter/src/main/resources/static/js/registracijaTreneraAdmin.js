@@ -36,9 +36,7 @@ $(document).ready(function(){
                 window.location.href = "home.html";
             },
             error: function (data) {
-                alert("Da li se poruka prenela?");
                 alert(data);
-                alert("Izgleda da jeste");
             }
         });
 

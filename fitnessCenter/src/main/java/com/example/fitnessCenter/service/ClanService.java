@@ -10,6 +10,7 @@ public interface ClanService {
     Clan findByKorisnickoImeAndLozinkaAndAktivan(String korisnickoIme, String lozinka, boolean aktivan);
     Clan save (Clan clan) throws Exception;
     Clan update (Clan clan) throws Exception;
+    Clan azuriranje (Clan clan);
     void delete(Long id);
     List<Clan> findAll();
     Clan findOne(Long id);

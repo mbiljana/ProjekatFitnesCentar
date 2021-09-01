@@ -1,10 +1,9 @@
 package com.example.fitnessCenter.contoller;
 
 import com.example.fitnessCenter.entity.Clan;
-import com.example.fitnessCenter.entity.DTO.ClanDTO;
-import com.example.fitnessCenter.entity.DTO.KorisnikDTO;
-import com.example.fitnessCenter.entity.DTO.KreiranjeKorisnikaDTO;
+import com.example.fitnessCenter.entity.DTO.*;
 import com.example.fitnessCenter.entity.Korisnik;
+import com.example.fitnessCenter.entity.Sala;
 import com.example.fitnessCenter.repository.ClanRepository;
 import com.example.fitnessCenter.service.ClanService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,20 +54,6 @@ public class ClanController {
        return new ResponseEntity<>(kreiranjeDTO,HttpStatus.CREATED);
     }
 
-    //izmena podataka clana
-    @PutMapping(value = "{/id}",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<KreiranjeKorisnikaDTO>updateUser(@PathVariable Long id,
-                                                           @RequestBody KreiranjeKorisnikaDTO kreiranjeKorisnikaDTO) throws Exception{
-        Clan korisnik  = new Clan(kreiranjeKorisnikaDTO.getKorisnickoIme(),kreiranjeKorisnikaDTO.getLozinka(),kreiranjeKorisnikaDTO.getIme(),
-                kreiranjeKorisnikaDTO.getPrezime(),kreiranjeKorisnikaDTO.getTelefon(),kreiranjeKorisnikaDTO.getEmail(),
-                kreiranjeKorisnikaDTO.getDatumRodjenja(),kreiranjeKorisnikaDTO.getUloga());
-        korisnik.setId(id);
-        Clan izmenjenKorisnik = clanService.update(korisnik);
-        KreiranjeKorisnikaDTO izmenjeniKorisnik = new KreiranjeKorisnikaDTO(izmenjenKorisnik.getId(),izmenjenKorisnik.getKorisnickoIme(),
-                izmenjenKorisnik.getLozinka(),izmenjenKorisnik.getIme(),izmenjenKorisnik.getPrezime(),izmenjenKorisnik.getDatumRodjenja(),
-                izmenjenKorisnik.getEmail(),izmenjenKorisnik.getTelefon(),izmenjenKorisnik.getUloga());
-        return new ResponseEntity<>(izmenjeniKorisnik,HttpStatus.OK);
-    }
 
     //brisanje clana
     @DeleteMapping(value = "{/id}")
@@ -76,6 +61,9 @@ public class ClanController {
         this.clanService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+
+
 
 
 

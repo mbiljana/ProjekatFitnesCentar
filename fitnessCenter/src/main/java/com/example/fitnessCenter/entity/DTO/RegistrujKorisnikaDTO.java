@@ -11,7 +11,7 @@ import java.util.Date;
 @Setter
 public class RegistrujKorisnikaDTO {
 
-    private Long id;
+
     private String korisnickoIme;
     private String lozinka;
     private String ime;
@@ -26,8 +26,8 @@ public class RegistrujKorisnikaDTO {
     public RegistrujKorisnikaDTO() {
     }
 
-    public RegistrujKorisnikaDTO(Long id, String korisnickoIme, String lozinka, String ime, String prezime, Date datumRodjenja, String email, String telefon, Uloga uloga, boolean aktivan, boolean da_li_je_registrovan) {
-        this.id = id;
+    public RegistrujKorisnikaDTO( String korisnickoIme, String lozinka, String ime, String prezime, Date datumRodjenja, String email, String telefon, Uloga uloga, boolean aktivan, boolean da_li_je_registrovan) {
+
         this.korisnickoIme = korisnickoIme;
         this.lozinka = lozinka;
         this.ime = ime;
