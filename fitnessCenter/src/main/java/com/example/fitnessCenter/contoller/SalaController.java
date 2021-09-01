@@ -1,9 +1,6 @@
 package com.example.fitnessCenter.contoller;
 
-import com.example.fitnessCenter.entity.DTO.FitnessCentarDTO;
-import com.example.fitnessCenter.entity.DTO.IDKorisnikaDTO;
-import com.example.fitnessCenter.entity.DTO.SalaDTO;
-import com.example.fitnessCenter.entity.DTO.TreninziKorisnikaDTO;
+import com.example.fitnessCenter.entity.DTO.*;
 import com.example.fitnessCenter.entity.FitnessCentar;
 import com.example.fitnessCenter.entity.ListaTreninga;
 import com.example.fitnessCenter.entity.Sala;
@@ -14,13 +11,14 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping(value = "api/sale")
+@RequestMapping(value = "/api/sale")
 public class SalaController {
 
     private final SalaService salaService;
@@ -60,6 +58,21 @@ public class SalaController {
 
         this.salaService.delete(id.getIdKorisnika());
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+
+    @PostMapping(value = ("/izmena"),
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<SalaIzmenaDTO> izmena(@RequestBody IzmenaSaleDTO kDTO) throws Exception {
+        Sala sala = salaService.findOne(kDTO.getIdTermina());
+        sala.setOznaka(kDTO.getOznaka());
+        sala.setKapacitet(kDTO.getKapacitet());
+        salaService.azuriranje(sala);
+        SalaIzmenaDTO tDTO = new SalaIzmenaDTO(sala.getOznaka(), sala.getKapacitet());
+
+        return new ResponseEntity<>(tDTO,HttpStatus.OK);
+
     }
 
 

@@ -44,5 +44,12 @@ public class SalaServiceImpl implements SalaService {
         salaRepository.deleteById(id);
     }
 
+    @Override
+    public Sala azuriranje(Sala sala)  {
+
+        Sala novaSala = this.salaRepository.save(sala);
+        return novaSala;
+    }
+
 
 }

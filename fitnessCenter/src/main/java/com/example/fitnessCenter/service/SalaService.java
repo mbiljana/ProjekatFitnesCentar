@@ -13,4 +13,6 @@ public interface SalaService {
     Sala save(Sala sala) throws Exception;
     List<Sala> findAll();
     void delete(Long id);
+
+    Sala azuriranje(Sala sala);
 }
